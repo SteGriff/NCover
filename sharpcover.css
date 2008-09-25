@@ -1,0 +1,36 @@
+body { padding: 0 0 0 0; margin: 0 0 0 0; background-color: #ecf8ed ;font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size: small;}
+
+a { text-decoration: none; font-size: small;}
+a:link { color: #00f;}
+a:visited { color: #00f; }
+a:hover { color: #888800; }
+a:active { }
+
+h3 { margin: 3px 0px 0px 0px;}
+
+p { font-size: small;}
+
+td { font-size: small;}
+
+th { border: 1px solid #157418; font-size: small; background-color: #ecf8ed; color: #157418;}
+	
+.bar { width: 5px; position: absolute; border: 1px solid #555;}
+.namespaceFiles { margin: 5px 0 5px 0;}
+.xAxisLabel { color: #157418; font-family: Tahoma, Arial, Helvetica, Sans-Serif; font-size:small; }
+.yAxisLabel100 {color: #157418; font-size:xx-small; margin-left:5px;} 
+.yAxisLabel0 { color: #157418; font-size:xx-small;} 
+
+.namespace { font-style: italic; font-weight: bold;}
+
+#history { overflow:hidden; position: relative; width:auto; background-color: #fff; border: 1px solid #157418; padding: 1px 0px 2px 0px;}
+
+#footer { display:block; clear:both; text-align: center; } 
+#header { overflow: hidden; padding-left: 280px; height: 100px; background-image: url(sharpcover.gif); background-repeat: no-repeat; clear: both; text-align: center; border: 2px solid #157418; color: #157418; background-color: #ecf8ed; font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size:medium; font-weight:bold;}
+#summary { margin-top: 10px; } 
+#namespaceSummary { margin-top: 10px;}
+#container { padding: 10px 10px 10px 10px; height: 100%; background-color: #fff;} 
+
+#fileSummary { margin-top: 10px;}
+#fileSummary td { padding: 2px; border-left: 1px solid #157418; border-right: 1px solid #157418; background-color: #fff;}
+#fileSummary table { border-collapse:collapse; border: 1px solid #157418; margin-top: 2px;}
+

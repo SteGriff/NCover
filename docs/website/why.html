@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>NCover : Why?</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>	
+
+<div id="border">
+<div id="content">
+	<a href="index.html">NCover</a>
+
+	<div id="section">
+
+	<h3>What does NCover do for you?</h3>
+	<p>
+		NCover highlights areas of code which are not being exercised by your tests.
+	</p>
+	
+ 	<h3>How does NCover work?</h3>
+	<p>
+		NCover reports the percentage of branches in the code that have been taken
+		throughout the course of your automated testing.
+
+		It achieves this by instrumenting the source code at each branch, and writing the 'hit' points to a file.
+		These 'hit' points are then compared to the total possible points that could have been 'hit'.
+		
+	</p>
+	<p>
+		Code coverage can help by identifying:
+		<ul>
+		<li>Areas of code that need additional testing.</li>
+		<li>Dead code (code that doesn't do anything either because it should be
+		deleted or due to a bug).</li>
+		<li>Dead files not included in solutions but still in CVS.</li>
+		</ul>
+	</p>
+	</div>
+	<div id="section">
+ 	<h3>Prerequisites</h3>
+	<p>
+		There are certain prerequisites for our code coverage tool. 
+		We believe that if you don't have these methods / tools in place, you'd be
+		better off spending time adding these things than mucking around with code coverage.
+		<br/>
+		Before you begin you need:
+		<ul>
+			<li>An automated build process (E.g. nant, ant, devenv)</li>
+			<li>Automated tests (E.g. nunit)</li>
+		</ul>
+
+		We would recommend (although it's not essential) that you add a continuous integration process
+		to regularly build and run tests before worrying about code coverage.
+	</p>
+	</div>
+
+	<div id="section">
+	<h3>Feedback</h3>
+	<p>
+		If you feel that there are better / alternative ways we can repackage NCover to
+		make it easier for you to use then please either email or add a feature request.
+		We like feedback (honest!).
+	</p>
+	</div>
+</div>
+</div>
+</body>
+</html>

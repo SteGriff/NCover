@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<History xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Events>
+    <Event>
+      <EventDate>2004-12-02T09:42:20.2726864-00:00</EventDate>
+      <CoveragePercentage>1</CoveragePercentage>
+      <CoveragePercentageColor>#00c800</CoveragePercentageColor>
+    </Event>
+    <Event>
+      <EventDate>2004-12-01T08:40:45.3523584-00:00</EventDate>
+      <CoveragePercentage>0.8</CoveragePercentage>
+      <CoveragePercentageColor>#a0c800</CoveragePercentageColor>
+    </Event>
+  </Events>
+</History>

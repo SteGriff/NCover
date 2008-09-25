@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title>NCover : NAnt Integration</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>	
+
+<div id="border">
+<div id="content">
+	<a href="index.html">NCover</a>
+
+	<div id="section">
+ 	<h3>NAnt Only Integration</h3>
+
+	The following is the typical scenario of how NCover fits into a continuous build process. 
+	It is designed to be easily slotted into a continuous build process such as <a href="http://ccnet.thoughtworks.com/">CruiseControl.NET</a>.
+
+	<ol>
+		<li>Before you update from your source control system, run the <a href="tasks/nrecover.html">nrecover task</a> 
+			(to deinstrument your source files in case the previous build failed).
+		<li>Run <a href="tasks/ncover.html">ncover task</a> to instrument your source code.</li>
+		<li>Compile.</li>
+		<li>Run your tests.</li>
+		<li>Run <a href="tasks/ncoverreport.html">ncoverreport task</a> to generate your report.</li>
+		<li>Run the <a href="tasks/nrecover.html">nrecover task</a> to deinstrument your source files.
+	</ol>
+
+	Then all you need to do is add a link from the build website to point to the latest generated coverage report<br/>
+	(and keep those coverage percentages up!).
+
+	</div>
+
+	<div id="section">
+	<h3>Multiple Reports</h3>
+
+	The ncover, nrecover and ncoverreport tasks each take a report name.
+	To output multiple reports duplicate all calls to these three tasks with reportname='xxx'.
+
+	<p>There is
+	<a href="http://cvs.sourceforge.net/viewcvs.py/ncover/ncover/Example.build?view=markup">
+		an example multiple report nant build file</a> that creates two reports - ncover's own coverage
+		and ncover's tests coverage. The second is designed to find dead code in tests (it's either obsolete code or
+		not testing what you thought it was).
+	</p>
+	 
+	</div>
+</div>
+</div>
+</body>
+</html>

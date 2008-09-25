@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+
+<project name="SharpCover" default="build">
+	
+    <target name="build" depends="clean,compile,unittest" />
+
+    <target name="clean">
+	<delete dir="bin" failonerror="false" />
+	<delete dir="_ReSharper.SharpCover" failonerror="false" />
+	<delete dir="SharpCover/bin" failonerror="false" />
+	<delete dir="SharpCover/obj" failonerror="false" />
+	<delete dir="SharpCover-Console/bin" failonerror="false" />
+	<delete dir="SharpCover-Console/obj" failonerror="false" />
+	<delete dir="SharpCoverNAnt/bin" failonerror="false" />
+	<delete dir="SharpCoverNAnt/obj" failonerror="false" />
+	<delete dir="SharpCoverReport/bin" failonerror="false" />
+	<delete dir="SharpCoverReport/obj" failonerror="false" />
+	<delete dir="SharpCoverTests/bin" failonerror="false" />
+	<delete dir="SharpCoverTests/obj" failonerror="false" />
+	<delete dir="SharpUncover/bin" failonerror="false" />
+	<delete dir="SharpUncover/obj" failonerror="false" />
+	<delete dir="ExampleVbLibrary/bin" failonerror="false" />
+	<delete dir="ExampleVbLibrary/obj" failonerror="false" />
+	<delete dir="ExampleVbLibraryTests/bin" failonerror="false" />
+	<delete dir="ExampleVbLibraryTests/obj" failonerror="false" />
+	<delete dir="ExampleCSharpLibrary/bin" failonerror="false" />
+	<delete dir="ExampleCSharpLibrary/obj" failonerror="false" />
+     </target>
+
+    <target name="compile">
+	<mkdir dir="bin" />
+	<copy file="tools/nant/bin/NAnt.Core.dll" todir="bin"/>
+	<copy file="tools/nant/bin/lib/net/1.1/nunit.framework.dll" todir="bin"/>
+	<copy file="tools/nant/bin/NAnt.exe.config" todir="bin"/>
+	<copy file="SharpCoverTests/log4net.dll" todir="bin"/>
+	<csc target="library" output="bin\SharpCover.dll" debug="true">
+                <sources>
+                    <include name="SharpCover\**\*.cs" />
+               </sources>
+		<resources failonempty="true" dynamicprefix="true">
+			<include name="SharpCover/Report.xslt"/>
+			<include name="SharpCover/SharpCover.css"/>
+			<include name="SharpCover/SharpCover.gif"/>
+		</resources>
+        </csc>
+	<csc target="exe" output="bin\SharpCover-Console.exe" debug="true">
+                <sources>
+                    <include name="SharpCover-Console\**\*.cs" />
+               </sources>
+		<references>
+			<include name="bin\SharpCover.dll"/>
+		</references>
+        </csc>
+	<csc target="exe" output="bin\SharpUncover.exe" debug="true">
+                <sources>
+                    <include name="SharpUncover\**\*.cs" />
+               </sources>
+		<references>
+			<include name="bin\SharpCover.dll"/>
+		</references>
+        </csc>
+	<csc target="library" output="bin\SharpCoverNAnt.dll" debug="true">
+                <sources>
+                    <include name="SharpCoverNAnt\**\*.cs" />
+               </sources>
+		<references>
+			<include name="bin\SharpCover.dll"/>
+			<include name="bin\NAnt.Core.dll"/>
+		</references>
+		<resources failonempty="true" basedir="SharpCover">
+			<include name="Report.xslt"/>
+		</resources>
+        </csc>
+	<csc target="library" output="bin\SharpCoverTests.dll" debug="true">
+                <sources>
+                    <include name="SharpCoverTests\**\*.cs" />
+                    <exclude name="SharpCoverTests\Resources\*.cs" />
+                </sources>
+		<references>
+			<include name="bin\NAnt.Core.dll"/>
+			<include name="bin\SharpCover.dll"/>
+			<include name="bin\SharpCoverNAnt.dll"/>
+			<include name="bin\nunit.framework.dll"/>
+		</references>
+		<resources failonempty="true" prefix="SharpCover.Resources">
+			<include name="SharpCoverTests/Resources/*"/>
+		</resources>
+        </csc>
+    </target>
+
+    <target name="unittest">                
+	<nunit2>
+                <formatter type="Plain" />
+		<test assemblyname="bin/SharpCoverTests.dll" />
+        </nunit2>
+    </target>
+
+    <!-- The rest of this build file compiles and runs the examples -->
+
+
+    <target name="systemtest" depends="test-clean,test-precompile,test-compile,test-test,test-report"/>
+
+    <target name="test-precompile" depends="test-clean">
+	<mkdir dir="bin\VBExamples" />
+	<loadtasks assembly="bin\SharpCoverNAnt.dll" />
+	<sharpcover reportDir=".\bin\VBExamples" 
+		reportName="VBExampleLibrary Coverage Report">
+		<instrument>
+			<include name="ExampleVbLibrary\**\*.vb" />
+			<include name="ExampleCSharpLibrary\**\*.cs" />
+		</instrument>
+	</sharpcover>
+    </target>
+
+    <target name="test-compile">
+	<copy file="bin\nunit.framework.dll" todir="bin/VBExamples" />
+	<copy file="bin\SharpCover.dll" todir="bin/VBExamples" />
+	<vbc target="library" output="bin\VBExamples\ExampleVbLibrary.dll" debug="true">
+                <sources>
+                    <include name="ExampleVbLibrary\**\*.vb" />
+               </sources>
+		<references>
+			<include name="bin\VBExamples\SharpCover.dll"/>
+		</references>
+        </vbc>
+
+	<csc target="library" output="bin\VBExamples\ExampleCSharpLibrary.dll" debug="true">
+                <sources>
+                    <include name="ExampleCSharpLibrary\**\*.cs" />
+               </sources>
+		<references>
+			<include name="bin\VBExamples\SharpCover.dll"/>
+		</references>
+        </csc>
+
+	<vbc target="library" output="bin\VBExamples\ExampleVbLibraryTests.dll" debug="true">
+                <sources>
+                    <include name="ExampleVbLibraryTests\**\*.vb" />
+               </sources>
+		<references>
+			<include name="bin\VBExamples\nunit.framework.dll"/>
+			<include name="bin\VBExamples\ExampleVbLibrary.dll"/>
+			<include name="bin\VBExamples\ExampleCSharpLibrary.dll"/>
+		</references>
+        </vbc>
+    </target>
+
+
+    <target name="test-test">
+	<nunit2>
+                <formatter type="Plain" />
+		<test assemblyname="bin/VBExamples/ExampleVbLibraryTests.dll" />
+        </nunit2>
+    </target>
+
+    <target name="test-report">
+	<loadtasks assembly="bin\SharpCoverNAnt.dll" />
+	<sharpcoverreport 
+		reportName="VBExampleLibrary Coverage Report"
+		minimumPercentage="20"
+	/>
+	<sharpuncover reportName="VBExampleLibrary Coverage Report"/>
+    </target>
+
+    <target name="test-clean">
+	<delete dir="bin/VBExamples" failonerror="false" />
+    </target>
+</project>

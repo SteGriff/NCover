@@ -1,0 +1,16 @@
+A { text-decoration: none; }
+body {margin:20px 20px 20px 20px;}
+#border { border:1px solid #000000; }
+#content {
+	postion:relative;
+	width:90%;
+	margin-top:5%;
+	margin-right:5%;
+	margin-bottom:5%;
+	margin-left: 5%;
+	margin-bottom:5%;	
+}
+
+#section {
+	margin-bottom:20px;
+	border-top: solid medium navy }

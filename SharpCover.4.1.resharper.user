@@ -1,0 +1,256 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer>
+      <setting name="UsedSolutionBuilderID">0</setting>
+    </integer>
+    <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
+      <setting name="SolutionAnalysisEnabled">True</setting>
+    </boolean>
+  </SettingsComponent>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="public" priority="10" />
+      <Item value="void" priority="2" />
+      <Item value="new" priority="12" />
+      <Item value="AssemblyLoader" priority="2" />
+      <Item value="using" priority="3" />
+      <Item value="System" priority="6" />
+      <Item value="AppDomain" priority="0" />
+      <Item value="assemblyLocation" priority="6" />
+      <Item value="Reflection" priority="0" />
+      <Item value="Environment" priority="1" />
+      <Item value="ProcessorArchitecture" priority="0" />
+      <Item value="Diagnostics" priority="0" />
+      <Item value="Process" priority="2" />
+      <Item value="NewsStyleUriParser" priority="0" />
+      <Item value="ProcessStartInfo" priority="0" />
+      <Item value="processStartInfo" priority="0" />
+      <Item value="process" priority="0" />
+      <Item value="string" priority="18" />
+      <Item value="return" priority="4" />
+      <Item value="class" priority="0" />
+      <Item value="Il" priority="3" />
+      <Item value="AssemblyLocation" priority="0" />
+      <Item value="String" priority="0" />
+      <Item value="location" priority="0" />
+      <Item value="il" priority="0" />
+      <Item value="IO" priority="0" />
+      <Item value="Path" priority="1" />
+      <Item value="m_AssemblyLocation" priority="0" />
+      <Item value="GetFilename" priority="3" />
+      <Item value="tempDir" priority="2" />
+      <Item value="GetFilenameWithoutExt" priority="0" />
+      <Item value="File" priority="8" />
+      <Item value="file" priority="0" />
+      <Item value="ilInjection" priority="0" />
+      <Item value="foreach" priority="1" />
+      <Item value="Regex" priority="1" />
+      <Item value="RegexOptions" priority="0" />
+      <Item value="regex" priority="0" />
+      <Item value="contents" priority="0" />
+      <Item value="MatchEvaluator" priority="0" />
+      <Item value="private" priority="1" />
+      <Item value="int" priority="0" />
+      <Item value="point" priority="0" />
+      <Item value="match" priority="1" />
+      <Item value="WorkingDirectory" priority="0" />
+      <Item value="static" priority="0" />
+      <Item value="input" priority="0" />
+      <Item value="CreateNoWindow" priority="0" />
+      <Item value="true" priority="1" />
+      <Item value="NUnit" priority="1" />
+      <Item value="Framework" priority="0" />
+      <Item value="ConsoleRunner" priority="0" />
+      <Item value="Runner" priority="0" />
+      <Item value="runner" priority="1" />
+      <Item value="var" priority="3" />
+      <Item value="target" priority="0" />
+      <Item value="testassembly" priority="1" />
+      <Item value="EXTENTION" priority="0" />
+      <Item value="IDisposable" priority="0" />
+      <Item value="RestoreUninstrumentedAssembly" priority="0" />
+      <Item value="if" priority="5" />
+      <Item value="Task" priority="0" />
+      <Item value="Assemblies" priority="0" />
+      <Item value="this" priority="0" />
+      <Item value="bool" priority="2" />
+      <Item value="m_RollbackOnDispose" priority="1" />
+      <Item value="false" priority="1" />
+      <Item value="AssemblyInstrumenter" priority="0" />
+      <Item value="Required" priority="0" />
+      <Item value="generatedFiles" priority="0" />
+      <Item value="assembly" priority="0" />
+      <Item value="coverageFile" priority="6" />
+      <Item value="Console" priority="1" />
+      <Item value="Xml" priority="0" />
+      <Item value="XmlDocument" priority="1" />
+      <Item value="xdoc" priority="3" />
+      <Item value="for" priority="0" />
+      <Item value="XmlNode" priority="0" />
+      <Item value="nodes" priority="1" />
+      <Item value="i" priority="0" />
+      <Item value="item" priority="0" />
+      <Item value="Decimal" priority="0" />
+      <Item value="Dictionary" priority="0" />
+      <Item value="long" priority="2" />
+      <Item value="HashSet" priority="0" />
+      <Item value="count" priority="0" />
+      <Item value="covered" priority="0" />
+      <Item value="ReportName" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.AppDomain">
+      <Item value="CurrentDomain" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Reflection.Assembly">
+      <Item value="Load" priority="0" />
+      <Item value="LoadFile" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Diagnostics.Process">
+      <Item value="Start" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Diagnostics.Process">
+      <Item value="Start" priority="0" />
+      <Item value="WaitForExit" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Diagnostics.ProcessStartInfo">
+      <Item value="RedirectStandardError" priority="0" />
+      <Item value="RedirectStandardInput" priority="0" />
+      <Item value="RedirectStandardOutput" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:UnCover.Il">
+      <Item value="DecompileFile" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Path">
+      <Item value="GetFileName" priority="0" />
+      <Item value="Combine" priority="3" />
+      <Item value="GetFileNameWithoutExtension" priority="1" />
+      <Item value="GetFullPath" priority="0" />
+      <Item value="GetDirectoryName" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.File">
+      <Item value="WriteAllText" priority="1" />
+      <Item value="AppendAllText" priority="1" />
+      <Item value="ReadAllLines" priority="0" />
+      <Item value="ReadAllText" priority="1" />
+      <Item value="Exists" priority="3" />
+      <Item value="Copy" priority="0" />
+      <Item value="Delete" priority="1" />
+      <Item value="AppendText" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="EndsWith" priority="0" />
+      <Item value="ToUpper" priority="0" />
+      <Item value="Equals" priority="1" />
+      <Item value="Split" priority="0" />
+      <Item value="ToLower" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Text.RegularExpressions.RegexOptions">
+      <Item value="Multiline" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.RegularExpressions.Regex">
+      <Item value="Replace" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.RegularExpressions.Match">
+      <Item value="Groups" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.RegularExpressions.Group">
+      <Item value="Value" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:UnCover.AssemblyLoader">
+      <Item value="InstrumentIl" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NUnit.Framework.Assert">
+      <Item value="AreEqual" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NUnit.ConsoleRunner.Runner">
+      <Item value="Main" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@UnCover.AssemblyInstrumenter">
+      <Item value="RestoreUninstrumentedAssembly" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Console">
+      <Item value="WriteLine" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlDocument">
+      <Item value="LoadXml" priority="0" />
+      <Item value="SelectNodes" priority="0" />
+      <Item value="SelectSingleNode" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlNodeList">
+      <Item value="Count" priority="0" />
+      <Item value="Item" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlNode">
+      <Item value="Value" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.HashSet`1">
+      <Item value="Add" priority="0" />
+      <Item value="Count" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Int64">
+      <Item value="MinValue" priority="0" />
+      <Item value="Parse" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="B8E0C503-82B4-4DCD-B1F1-4FF77078E717/d:Tasks/f:SharpCoverTask.cs" caret="778" scrollPosition="0|0" />
+      <File id="DDDFC383-7C1B-4B3B-961E-10D067714919/d:Resources/f:ActualCoverageFile.xml" caret="2552" scrollPosition="0|0" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:AssemblyLoaderTest.cs" caret="533" scrollPosition="0|0" />
+      <File id="94B2F022-693F-4E1F-B353-6A8838616FD3/f:SharpCoverReport.cs" caret="859" scrollPosition="0|21" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/f:Coverage.cs" caret="298" scrollPosition="0|11" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/f:CoveragePoint.cs" caret="467" scrollPosition="0|10" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:AssemblyInstrumenter.cs" caret="7774" scrollPosition="31|169" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="861" scrollPosition="0|33" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="973" scrollPosition="0|19" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:AssemblyInstrumenter.cs" caret="3186" scrollPosition="0|79" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:AssemblyInstrumenter.cs" caret="15100" scrollPosition="0|291" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="216" scrollPosition="0|0" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:AssemblyInstrumenter.cs" caret="4405" scrollPosition="0|110" />
+      <File id="94B2F022-693F-4E1F-B353-6A8838616FD3/f:SharpCoverReport.cs" caret="398" scrollPosition="0|15" />
+      <File id="94B2F022-693F-4E1F-B353-6A8838616FD3/f:SharpCoverReport.cs" caret="54" scrollPosition="0|0" />
+      <File id="94B2F022-693F-4E1F-B353-6A8838616FD3/f:SharpCoverReport.cs" caret="1604" scrollPosition="0|28" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/f:Coverage.cs" caret="1235" scrollPosition="72|41" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/f:Coverage.cs" caret="2150" scrollPosition="0|76" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/f:Coverage.cs" caret="2497" scrollPosition="0|83" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="2280" scrollPosition="0|67" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="636" scrollPosition="0|16" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="889" scrollPosition="0|35" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="1793" scrollPosition="0|57" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="1615" scrollPosition="0|56" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="99" scrollPosition="0|0" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="324" scrollPosition="0|9" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="795" scrollPosition="0|25" />
+      <File id="C190D259-694C-4372-A3E3-E60D8BB68F8C/d:Actions/f:SharpCoverReportAction.cs" caret="1116" scrollPosition="0|35" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:AssemblyInstrumenter.cs" caret="6765" scrollPosition="48|169" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="2827" scrollPosition="0|24" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:AssemblyInstrumenter.cs" caret="7778" scrollPosition="31|169" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="3032" scrollPosition="0|40" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="1041" scrollPosition="0|26" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="1402" scrollPosition="28|30" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="1689" scrollPosition="0|33" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="1993" scrollPosition="0|36" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="368" scrollPosition="0|6" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="584" scrollPosition="0|20" />
+      <File id="C37C12C4-9DAC-4FCE-A894-948A3FA868F1/f:UnCoverTask.cs" caret="2277" scrollPosition="0|59" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <CustomStartDirectory>
+    </CustomStartDirectory>
+    <UseShadowCopy>True</UseShadowCopy>
+    <UseCustomFolder>False</UseCustomFolder>
+    <EnableUnitTesting>True</EnableUnitTesting>
+    <Providers />
+  </UnitTestRunner>
+</Configuration>

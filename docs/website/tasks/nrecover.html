@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>NCover: NAnt integration: NCover task</title>
+ <link rel="stylesheet" type="text/css" href="../style.css" />
+<body>
+
+<div id="border">
+<div id="content">
+
+<style>
+<!--
+.table table {
+    font-size: 100%;
+    border-collapse: collapse;
+    width: 93%;
+}
+
+.table th {
+    background-color: #eeeeee;
+    color: #000000;
+    font-weight: bolder;
+    padding: 5px;
+    border: 1px solid #999999;
+    text-align: left;
+}
+
+.table td {
+    border: 1px solid #999999;
+    padding: 5px;
+}
+-->
+</style>
+
+<a href="../nant-integration.html">NAnt Integration</a> 
+<div id="section">
+<h3>&lt;nrecover&gt; task</h3>
+Instruments c# code with coverage code.<br/>
+
+This task should be run prior to cvs updates to ensure the code is not in an uninstrumented state.
+(This could happen if the build was terminated via ctrl-c.)
+</p>
+<p>
+To load the task add in this line to your initialisation target in your NAnt build file:<br/><br/>
+	<code>&lt;loadtasks assembly="NCover.dll" /&gt;</code>
+
+</p>
+
+<h3><Parameters</h3>
+   <div class="table">
+      <table>
+        <tr>
+          <th>Attribute</th>
+
+          <th style="text-align: center;">Type</th>
+          <th>Description</th>
+          <th style="text-align: center;">Required</th>
+        </tr>
+        <tr>
+          <td valign="top">publishDir</td>
+
+          <td style="text-align: center;">string</td>
+          <td>
+            Directory to output the expected coverage points that should be hit. The default is <b>Project.BaseDirectory/expectedCoverage.xml</b>.
+            </td>
+          <td style="text-align: center;">False</td>
+        </tr>
+ 	<tr>
+          <td valign="top">reportname</td>
+
+          <td style="text-align: center;">string</td>
+          <td>
+            Name of report to deinstrument the code for. This is required to be done for each report.
+            </td>
+          <td style="text-align: center;">False</td>
+        </tr>
+     </table>
+    </div>
+</div>
+<div id="section">
+<h3>Nested Elements</h3>
+
+None.
+
+<div id="section">
+<h3>Example</h3>
+
+<pre>
+&lt;nrecover/&gt; 
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

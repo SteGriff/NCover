@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>NCover: NAnt integration: NCoverReport task</title>
+ <link rel="stylesheet" type="text/css" href="../style.css" />
+<body>
+
+<div id="border">
+<div id="content">
+<style>
+<!--
+.table table {
+    font-size: 100%;
+    border-collapse: collapse;
+    width: 93%;
+}
+
+.table th {
+    background-color: #eeeeee;
+    color: #000000;
+    font-weight: bolder;
+    padding: 5px;
+    border: 1px solid #999999;
+    text-align: left;
+}
+
+.table td {
+    border: 1px solid #999999;
+    padding: 5px;
+}
+-->
+</style>
+
+<a href="../nant-integration.html">NAnt Integration</a>
+<div id="section">
+<h2>&lt;ncoverreport&gt; task</h2>
+Generates a html report on the test coverage of the specified code.<br/>
+
+This task should be called once the tests are run.
+<p>
+To load the task add in this line to your initialisation target in your NAnt build file:
+	<code>&lt;loadtasks assembly="NCover.dll" /&gt;</code>
+
+</p>
+
+<h3><Parameters</h3>
+   <div class="table">
+      <table>
+        <tr>
+          <th>Attribute</th>
+
+          <th style="text-align: center;">Type</th>
+          <th>Description</th>
+          <th style="text-align: center;">Required</th>
+        </tr>
+        <tr>
+          <td valign="top">reportname</td>
+
+          <td style="text-align: center;">string</td>
+          <td>
+            File to output the coverage report. The default is <b>Project.BaseDirectory/CoverageReport.html</b>.
+            </td>
+          <td style="text-align: center;">False</td>
+        </tr>
+       <tr>
+          <td valign="top">actuals</td>
+
+          <td style="text-align: center;">path(s)</td>
+          <td>
+            When tests are run against the instrumented code they append to in the current directory a file called 'actual.xml'.
+	You need to specify the location of that file here. If several test suites are run from different directories, then list
+all the paths seperated by a ';'.
+            </td>
+          <td style="text-align: center;">True</td>
+        </tr>
+        <tr>
+          <td valign="top">minimumPercentage</td>
+
+          <td style="text-align: center;">decimal</td>
+          <td>
+            The minimun percentage test coverage acceptable for a successfull build. Warning messages will be issued if code coverage gets within 10% of the minimum. 
+		If this happens it's time to write more tests (though shouldn't you be writing them before the code? ;-)
+            </td>
+          <td style="text-align: center;">False</td>
+        </tr>
+        <tr>
+          <td valign="top">history</td>
+
+          <td style="text-align: center;">string</td>
+          <td>
+            The filename to store the coverage report's change over time. This should not be wiped on every build.
+	    Please note history is a new feature, the use of this feature will improve with time.
+		History is disabled if no filename is present.
+            </td>
+          <td style="text-align: center;">False</td>
+        </tr>
+      </table>
+    </div>
+</div>
+
+<div id="section">
+<h3>Nested Elements:</h3>
+
+None.
+</div>
+<div id="section">
+<h3>Example</h3>
+
+The following example will create the report in the bulid directory called 'ProjectName-report.html':-
+
+<pre>
+&lt;target name="coverage-report" depends="nunit-tests" &gt;
+	&lt;ncoverreport/&gt;
+&lt;/target>
+</pre>
+</div>
+
+</div>
+</div>
+</body>
+</html>

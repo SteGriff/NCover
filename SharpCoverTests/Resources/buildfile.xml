@@ -1,0 +1,56 @@
+﻿<?xml version="1.0"?>
+
+<project name="SharpCover" default="build" basedir="c:\sharpcover">
+	<target name="build"/>
+	<!--<property name="binarydir" value="SharpCover/bin/debug" />
+	<property name="builddir" value="bin" />
+	<property name="webdir" value="bin" />
+		
+    <target name="build" depends="clean,instrument,compile,test,report" />
+
+    <target name="clean" description="deinstrument src using sharpuncover">
+		<loadtasks assembly="${binarydir}\SharpCover.dll" />
+        <sharpuncover reportName="SharpCover" reportDir="${builddir}" />
+	</target>
+
+    <target name="instrument" description="Instrument the source files">
+		<echo>SharpCover instrumentation starting...</echo>
+
+        <loadtasks assembly="${binarydir}\SharpCover.dll" />
+        <sharpcover reportName="SharpCover" reportDir="${builddir}">
+       		<instrument>
+				<include name="c:\sharpcover\SharpCover\**/*.cs"/>
+			</instrument>
+		</sharpcover>
+    </target>
+
+    <target name="compile" description="Compile the solution using the instrumented files">
+		<echo>SharpCover compilation starting...</echo>
+		<solution solutionfile="SharpCover.sln" outputdir="${builddir}" configuration="debug" />
+	</target>
+
+    <target name="test" description="Run the tests to generate the coverage results">
+		<nunit2>
+			<formatter type="Plain" />
+			<test assemblyname="${builddir}\SharpCovertests.dll" />
+       	</nunit2>
+    </target>
+
+    <target name="report" description="Create the report">
+        <loadtasks assembly="${binarydir}\SharpCover.dll" />
+        <sharpcoverreport reportName="SharpCover" reportDir="${builddir}" minimumPercentage="35" />
+        
+		<!- Copy coverage report to website >
+		<!-copy todir="${webdir}">
+			<fileset basedir="${builddir}">
+				<include name="SharpCover-report.html" />
+				<include name="SharpCover.css" />
+				<include name="SharpCover.gif" />
+			</fileset>
+		</copy>
+
+		<!- Deinstrument the code >
+		<sharpuncover reportName="SharpCover" reportDir="${builddir}" /> 
+    </target>
+    -->
+</project>

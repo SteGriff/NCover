@@ -1,0 +1,290 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDDFC383-7C1B-4B3B-961E-10D067714919}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>SharpCoverTests</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SharpCover</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NAnt.Core">
+      <Name>NAnt.Core</Name>
+      <HintPath>NAnt.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\SharpCoverNAnt\SharpCoverNAnt.csproj">
+      <Name>SharpCoverNAnt</Name>
+      <Project>{B8E0C503-82B4-4DCD-B1F1-4FF77078E717}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpCover\SharpCover.csproj">
+      <Name>SharpCover</Name>
+      <Project>{C190D259-694C-4372-A3E3-E60D8BB68F8C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\SharpCoverActionMockObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\SharpCoverActionTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\SharpCoverReportActionTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\SharpUncoverActionTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\CoveragePointCollectionTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\EventCollectionTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\NamespaceCollectionTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\ReportFileCollectionTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CoveragePointTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CoverageTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Instrumenting\FileCopyInstrumenterTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Instrumenting\MockInstrumenter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\ConsoleTraceListenerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\LoggerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\MockTraceListener.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\MockWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\NAntTraceListenerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\CSharp\CommentsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\CSharp\ConditionalMatcherTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\CSharp\ParserTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\FlattenMatcherTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\InsertTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\MatcherTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\MockMatcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\MockParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\VB\ConditionalMatcherTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\VB\FunctionMatcherTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\VB\ParserTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsing\VB\SubroutineMatcherTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\EventTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\HistoryManagerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\HistoryTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\HtmlReportTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\NamespaceTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\ReportFileTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\ReportGeneratorTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\ReportTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportSettingsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\MockProject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\MockTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\SharpCoverReportTaskTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\SharpCoverTaskTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tasks\SharpUncoverTaskTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\ArgumentParsingTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\GradientPointTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\GradientTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\ResourceManagerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utilities\SerializationTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="log4net.dll" />
+    <Content Include="NAnt.Core.dll" />
+    <EmbeddedResource Include="Resources\ActualCoverageFile.xml" />
+    <EmbeddedResource Include="Resources\buildfile.xml" />
+    <EmbeddedResource Include="Resources\CodeFile.cs">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CodeFile.vb">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ExpectedCoverageFile.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,1 @@
+tools\nant\bin\nant %1 %2 %3 %4

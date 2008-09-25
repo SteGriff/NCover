@@ -1,0 +1,55 @@
+﻿<?xml version="1.0"?>
+
+<project name="SharpCover" default="build" basedir="c:\SharpCover\">
+    <target name="build" depends="clean,instrument,compile,test,report" />
+
+    <target name="clean">
+	<!-- deinstrument src using sharpuncover. -->
+		<loadtasks assembly="C:\Source\Utilities\SharpCover\SharpCover\bin\Debug\SharpCover.dll" />
+        <sharpuncover reportName="SharpCover" reportDir="c:\SharpCover\output" />
+	
+		
+     </target>
+
+    <target name="instrument">
+		<echo>SharpCover instrumentation starting...</echo>
+        <loadtasks assembly="C:\Source\Utilities\SharpCover\SharpCover\bin\Debug\SharpCover.dll" />
+        <sharpcover reportName="SharpCover" reportDir="c:\SharpCover\output" >
+        		<instrument>
+				<includes name="c:\SharpCover\SharpCover\**/*.cs"/>
+				<excludes name="c:\SharpCover\SharpCover\ResultLogger.cs" />
+				<excludes name="c:\SharpCover\SharpCover\Results.cs" />
+				<excludes name="c:\SharpCover\SharpCoverTests\**/*.cs" />
+			</instrument>
+		</sharpcover>
+    </target>
+
+    <target name="compile">
+		<echo>SharpCover compilation starting...</echo>
+		<solution solutionfile="SharpCover.sln" outputdir="c:\SharpCover\output" configuration="debug" />
+	</target>
+
+    <target name="test">                
+		<nunit2>
+			<formatter type="Plain" />
+			<test assemblyname="c:\SharpCover\output\SharpCovertests.dll" />
+        </nunit2>
+    </target>
+
+    <target name="report">
+        <loadtasks assembly="C:\Source\Utilities\SharpCover\SharpCover\bin\Debug\SharpCover.dll" />
+        <sharpcoverreport reportName="SharpCover" reportDir="c:\SharpCover\output" minimumPercentage="8" />
+        
+		<!-- Copy coverage report to website -->
+		<copy todir="c:\inetpub\wwwroot\SharpCover Output\">
+			<fileset basedir="c:\SharpCover\output\">
+				<includes name="SharpCover-report.html" />
+				<includes name="SharpCover.css" />
+				<includes name="SharpCover.gif" />
+			</fileset>
+		</copy>
+
+		<!-- Deinstrument the code -->
+		<sharpuncover reportName="SharpCover" reportDir="c:\SharpCover\output" /> 
+    </target>
+</project>

@@ -1,0 +1,92 @@
+<Configuration>
+  <RecentFilesTracker>
+    <RecentFilesTracker>
+      <TrackedFile location="C:\sharpcover\ExampleCSharpLibrary\Class1.cs" offset="282" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\ExampleVbLibrary\Class1.vb" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Instrumenting\FileCopyInstrumenterTests.cs" offset="196" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCover\Instrumenting\FileCopyInstrumenter.cs" offset="1432" line="47" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Parsing\MockParser.cs" offset="81" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCover\Actions\SharpUncoverAction.cs" offset="901" line="25" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCover\ReportSettings.cs" offset="1342" line="-1" column="-1" />
+      <TrackedFile location="C:\sharpcover\SharpCover\Actions\ISharpCoverAction.cs" offset="107" line="-1" column="-1" />
+      <TrackedFile location="C:\sharpcover\SharpUncover\SharpUncover.cs" offset="482" line="6" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverNAnt\Tasks\SharpUncoverTask.cs" offset="963" line="18" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverNAnt\Tasks\SharpCoverTask.cs" offset="1020" line="31" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\TestUtilities.cs" offset="3424" line="79" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Parsing\VB\ConditionalMatcherTests.cs" offset="833" line="22" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Logging\NAntTraceListenerTests.cs" offset="1261" line="32" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Tasks\SharpCoverTaskTests.cs" offset="1502" line="32" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Tasks\SharpUncoverTaskTests.cs" offset="981" line="23" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Tasks\SharpCoverReportTaskTest.cs" offset="1956" line="60" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Tasks\MockProject.cs" offset="146" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Tasks\MockTask.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCover\Report.xslt" offset="0" line="7" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Logging\MockTraceListener.cs" offset="72" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverNAnt\Logging\NAntTraceListener.cs" offset="933" line="47" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverTests\Resources\buildfile.xml" offset="0" line="7" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCoverNAnt\Tasks\SharpCoverReportTask.cs" offset="1186" line="47" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCover\Reporting\HtmlReport.cs" offset="79" line="0" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCover\Parsing\CSharp\Parser.cs" offset="1096" line="28" column="0" />
+      <TrackedFile location="C:\sharpcover\SharpCover\Parsing\ProjectFiles\ProjectFileParser.cs" offset="392" line="3" column="0" />
+    </RecentFilesTracker>
+  </RecentFilesTracker>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean />
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:System.Collections.IList">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Specialized.StringCollection">
+      <Item value="Count" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:SharpCover.CoveragePoint">
+      <Item value="Filename" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@SharpCover">
+      <Item value="Results" priority="1" />
+      <Item value="TestUtilities" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NAnt.Core.Task">
+      <Item value="LogPrefix" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:SharpCover.Parsing.IParse">
+      <Item value="Accept" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@SharpCover.Parsing">
+      <Item value="CSharp" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NUnit.Framework.Assert">
+      <Item value="AreEqual" priority="0" />
+      <Item value="IsFalse" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:string">
+      <Item value="EndsWith" priority="3" />
+      <Item value="Replace" priority="0" />
+      <Item value="StartsWith" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NAnt.Core">
+      <Item value="PlatformHelper" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.ArrayList">
+      <Item value="Add" priority="3" />
+      <Item value="Count" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@">
+      <Item value="NamespaceURI" priority="0" />
+      <Item value="LoadXml" priority="0" />
+      <Item value="GetTypes" priority="0" />
+      <Item value="Errors" priority="0" />
+      <Item value="NameTable" priority="1" />
+      <Item value="OuterXml" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System">
+      <Item value="Xml" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@SharpCover.Results.results">
+      <Item value="Clear" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
