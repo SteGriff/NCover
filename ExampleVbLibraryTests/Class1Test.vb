@@ -1,7 +1,7 @@
 Option Explicit On 
 Option Strict On
 
-Imports ANamespace
+Imports ExampleVbLibrary
 Imports NUnit.Framework
 
 <TestFixture()> _
@@ -17,7 +17,7 @@ Public Class Class1Test
 
     <Test()> _
     Public Sub AnotherTest()
-        Dim c As New ExampleCSharpLibrary.Class1
+        Dim c As New Class1
 
         c.AMethod()
     End Sub

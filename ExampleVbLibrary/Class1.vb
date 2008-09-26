@@ -1,6 +1,6 @@
 Imports System
 
-Namespace ANamespace
+Namespace ExampleVbLibrary
 
     Public Class Class1
 
