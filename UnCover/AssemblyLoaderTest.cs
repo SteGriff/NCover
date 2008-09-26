@@ -10,11 +10,11 @@ namespace UnCover
         [Test,Ignore("Need to put nocver-console in shared assemblies")]
         public void CanLoadAnAssemblyFromDisk()
         {
-            var testassembly = @"C:\work\simple\Simple\SimpleTests\bin\Debug\SimpleTests.dll";
+            /*var testassembly = @"C:\work\simple\Simple\SimpleTests\bin\Debug\SimpleTests.dll";
             using (new AssemblyInstrumenter(@"C:\work\simple\Simple\SimpleTests\bin\Debug\Simple.exe"))
             {
                 NUnit.ConsoleRunner.Runner.Main(new[] {testassembly});
-            }
+            }*/
         }
 
         [Test]

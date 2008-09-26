@@ -25,11 +25,13 @@ namespace UnCover
 
         public string CompileFile(string target)
         {
-            var cmdline = @" /QUIET " + (target.ToUpper().EndsWith(".DLL")? "/DLL" : "/EXE")+ @" /OUT=" + target +
-            " /RESOURCE=" + Path.Combine(tempDir, GetFilenameWithoutExt()) + ".res "
-            + Path.Combine(tempDir, GetFilenameWithoutExt() + ".il");
-            File.WriteAllText(@"c:\uncover\compile.bat", "ilasm " + cmdline);
-            var processStartInfo = new ProcessStartInfo(@"C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm", cmdline)
+            var cmdline = string.Format(@" /QUIET {0} /OUT=""{1}"" /RESOURCE=""{2}"" ""{3}""", 
+                (target.ToUpper().EndsWith(".DLL")? "/DLL" : "/EXE"), 
+                target, 
+                Path.Combine(tempDir, GetFilenameWithoutExt() + ".res"), 
+                Path.Combine(tempDir, GetFilenameWithoutExt() + @".il"));
+            Console.WriteLine(@"C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm.exe " + cmdline);
+            var processStartInfo = new ProcessStartInfo(@"C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm.exe", cmdline)
             {
                 UseShellExecute = false,
                 RedirectStandardError = true,
@@ -48,10 +50,11 @@ namespace UnCover
 
         public string DecompileFile()
         {
-            var cmdline = m_AssemblyLocation + @" /TEXT /SOURCE /TYPELIST /LINENUM /NOBAR /ALL /OUT=" + tempDir + @"\" +
-                             GetFilenameWithoutExt() + ".il";
-            File.WriteAllText(@"c:\uncover\decompile.bat", "ildasm " + cmdline);
-            var processStartInfo = new ProcessStartInfo(@"C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\ildasm", cmdline)
+            var cmdline = string.Format(@"""{0}"" /TEXT /SOURCE /TYPELIST /LINENUM /NOBAR /ALL /OUT=""{1}""", 
+                m_AssemblyLocation, 
+                Path.Combine(tempDir,GetFilenameWithoutExt() + @".il"));
+            Console.WriteLine(@"C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\ildasm.exe " + cmdline);
+            var processStartInfo = new ProcessStartInfo(@"C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\ildasm.exe", cmdline)
             {
                 UseShellExecute = false,
                 RedirectStandardError = true,
@@ -74,7 +77,7 @@ namespace UnCover
             return Path.Combine(tempDir, GetFilenameWithoutExt() + ".il");
         }
 
-        public readonly string tempDir = @"c:\uncover";
+        public readonly string tempDir = Path.GetTempPath();
     }
 
     public class AssemblyInstrumenter : IDisposable
