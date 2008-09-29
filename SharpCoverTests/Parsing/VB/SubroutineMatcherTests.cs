@@ -28,7 +28,7 @@ namespace SharpCover.Parsing.VB
 			return true;
 		}
 
-		[Test]
+		[Test,Ignore("Todo")]
 		public void TestSubroutine()
 		{
 			const string input = @"
@@ -43,10 +43,9 @@ namespace SharpCover.Parsing.VB
 			TestUtilities.AssertCompilesInVb(input);
 
 			Matcher.Comments = new Comments(input);
-			SubroutineMatcher matcher = new SubroutineMatcher(new AddCoveragePointDelegate(MockAddPoint));
+			var matcher = new SubroutineMatcher(MockAddPoint);
 			string output = matcher.Replace(input);
-			//Assert.IsTrue(i > 0);
-
+			
 			TestUtilities.AssertCompilesInVb(output);
 
 			//todo check was hit!

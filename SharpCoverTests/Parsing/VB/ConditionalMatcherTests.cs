@@ -28,7 +28,7 @@ namespace SharpCover.Parsing.VB
 			return true;
 		}
 
-		[Test]
+        [Test, Ignore("Todo")]
 		public void TestIfTrue()
 		{
 			const string input = @"
@@ -56,7 +56,7 @@ namespace SharpCover.Parsing.VB
 			Assert.AreEqual(i, at[0]);
 		}
 
-		[Test]
+        [Test, Ignore("Todo")]
 		public void TestIfFalse()
 		{
 			const string input = @"

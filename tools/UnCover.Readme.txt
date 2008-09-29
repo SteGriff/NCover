@@ -1,0 +1,9 @@
+  <UsingTask AssemblyFile="..\tools\UnCover.dll" TaskName="UnCover.UnCover" />
+  <Target Name="AfterBuild">
+	<UnCover Action="Cover" Assemblies="$(TargetDir)\SharpCover.dll"/>	
+	<NUnit Assemblies="$(TargetDir)\SharpCoverTests.dll"
+		WorkingDirectory="$(MSBuildProjectDirectory)"
+		ToolPath="$(NUnitToolPath)"
+		ContinueOnError="false" />
+	<UnCover Action="Report" Assemblies="$(TargetDir)\SharpCover.exe"/>
+  </Target>
