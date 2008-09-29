@@ -50,8 +50,8 @@ namespace UnCover
 
         public string DecompileFile()
         {
-            var cmdline = string.Format(@"""{0}"" /TEXT /SOURCE /TYPELIST /LINENUM /NOBAR /ALL /OUT=""{1}""", 
-                m_AssemblyLocation, 
+            var cmdline = string.Format(@"""{0}"" /TEXT /SOURCE /TYPELIST /LINENUM /NOBAR /ALL /OUT=""{1}""",
+                m_AssemblyLocation + ".uninstrumented", 
                 Path.Combine(tempDir,GetFilenameWithoutExt() + @".il"));
             Console.WriteLine(@"C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\ildasm.exe " + cmdline);
             var processStartInfo = new ProcessStartInfo(@"C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\ildasm.exe", cmdline)
@@ -99,7 +99,7 @@ namespace UnCover
             m_RollbackOnDispose = rollbackOnDispose;
             if (AlreadyInstrumented(m_AssemblyLocation))
             {
-                return;
+                File.Delete(m_AssemblyLocation + EXTENTION);
             }
             
             BackupUninstrumentedAssembly();
@@ -107,20 +107,24 @@ namespace UnCover
             var il = new Il(assemblyLocation);
             string file = il.DecompileFile();
 
+
             string contents = File.ReadAllText(file);
             string result = InstrumentIl(contents);
-
-            File.WriteAllText(file, result + ilInjection); 
+            string coverageLocation = assemblyLocation + ".coverage.xml";
+            Console.WriteLine("Coverage will be found here: " + coverageLocation);
+            File.WriteAllText(file, result + ilInjection(coverageLocation)); 
             il.CompileFile(assemblyLocation);
         }
 
         private void BackupUninstrumentedAssembly()
         {
-            File.Copy(m_AssemblyLocation, m_AssemblyLocation + EXTENTION);
+            Console.WriteLine("Instrumenting " + m_AssemblyLocation);
+            File.Move(m_AssemblyLocation, m_AssemblyLocation + EXTENTION);
         }
 
         public static void RestoreUninstrumentedAssembly(string location)
         {
+            Console.WriteLine("Looking to uninstrument dll @ " + location);
             if (File.Exists(location + EXTENTION))
             {
                 File.Delete(location);
@@ -151,12 +155,13 @@ namespace UnCover
 
         //assume dll
 
-        public string ilInjection
+        public string ilInjection(string filename)
         {
-            get
-            {
                 return
-                    @".class /*02000003*/ public auto ansi sealed CoverageResults
+                    @"
+
+
+.class /*02000003*/ public auto ansi sealed CoverageResults
        extends [mscorlib/*23000001*/]System.Object/*01000001*/
 {
   .field /*04000001*/ private static initonly class [mscorlib/*23000001*/]System.Collections.Hashtable/*01000002*/ points
@@ -177,16 +182,9 @@ namespace UnCover
 //000021:         static readonly Hashtable points = new Hashtable();
     IL_0000:  /* 73   | (0A)000012       */ newobj     instance void [mscorlib/*23000001*/]System.Collections.Hashtable/*01000002*/::.ctor() /* 0A000012 */
     IL_0005:  /* 80   | (04)000001       */ stsfld     class [mscorlib/*23000001*/]System.Collections.Hashtable/*01000002*/ CoverageResults/*02000003*/::points /* 04000001 */
-    .line 22,22 : 9,116 ''
-//000022:         static readonly string destinationFilename = typeof(CoverageResults).Assembly.GetName().Name + "".coverage.xml"";
-    IL_000a:  /* D0   | (02)000003       */ ldtoken    CoverageResults/*02000003*/
-    IL_000f:  /* 28   | (0A)000013       */ call       class [mscorlib/*23000001*/]System.Type/*01000014*/ [mscorlib/*23000001*/]System.Type/*01000014*/::GetTypeFromHandle(valuetype [mscorlib/*23000001*/]System.RuntimeTypeHandle/*01000015*/) /* 0A000013 */
-    IL_0014:  /* 6F   | (0A)000014       */ callvirt   instance class [mscorlib/*23000001*/]System.Reflection.Assembly/*01000016*/ [mscorlib/*23000001*/]System.Type/*01000014*/::get_Assembly() /* 0A000014 */
-    IL_0019:  /* 6F   | (0A)000015       */ callvirt   instance class [mscorlib/*23000001*/]System.Reflection.AssemblyName/*01000017*/ [mscorlib/*23000001*/]System.Reflection.Assembly/*01000016*/::GetName() /* 0A000015 */
-    IL_001e:  /* 6F   | (0A)000016       */ callvirt   instance string [mscorlib/*23000001*/]System.Reflection.AssemblyName/*01000017*/::get_Name() /* 0A000016 */
-    IL_0023:  /* 72   | (70)000019       */ ldstr      "".coverage.xml"" /* 70000019 */
-    IL_0028:  /* 28   | (0A)000017       */ call       string [mscorlib/*23000001*/]System.String/*01000018*/::Concat(string,
-                                                                                                                      string) /* 0A000017 */
+                                    ldstr      """ + filename.Replace(@"\", @"\\") + @"""
+                                    ldstr      """ + filename.Replace(@"\", @"\\") + @"""
+                                    call       void [mscorlib]System.Console::WriteLine(string)
     IL_002d:  /* 80   | (04)000002       */ stsfld     string CoverageResults/*02000003*/::destinationFilename /* 04000002 */
     .line 25,25 : 9,10 ''
 //000023:             
@@ -308,7 +306,7 @@ namespace UnCover
 
 } // end of class CoverageResults
 ";
-            }
+            
         }
 
         public void Dispose()
