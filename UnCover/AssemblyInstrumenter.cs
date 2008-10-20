@@ -49,8 +49,8 @@ namespace UnCover
         }
 
         public string DecompileFile()
-        {
-            var cmdline = string.Format(@"""{0}"" /TEXT /SOURCE /TYPELIST /LINENUM /NOBAR /ALL /OUT=""{1}""",
+        {///HEADER /BYTES /STATS
+            var cmdline = string.Format(@"""{0}"" /UTF8 /TEXT /TYPELIST /LINENUM /NOBAR /CLASSLIST /TOKENS /OUT=""{1}""",// /SOURCE was instrumenting source!
                 m_AssemblyLocation + ".uninstrumented", 
                 Path.Combine(tempDir,GetFilenameWithoutExt() + @".il"));
             Console.WriteLine(@"C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\ildasm.exe " + cmdline);
@@ -138,18 +138,18 @@ namespace UnCover
         }
 
         public string InstrumentIl(string contents)
-        {
-            var regex = new Regex(@"(\s)(ret|brtrue.s\s+\w+)", RegexOptions.Multiline);
+        {//ret|
+            var regex = new Regex(@"(\s)(brtrue.s\s+\w+)", RegexOptions.Multiline);
             return regex.Replace(contents, new MatchEvaluator(MatchEval));
         }
 
         private int m_Point;
         private string MatchEval(Match match)
         {
-           if (match.Groups[2].Value.Equals("ret"))
+           /*if (match.Groups[2].Value.Equals("ret"))
            {
                return match.Groups[1].Value + "ldc.i4.s   " + (m_Point++) + "\r\ncall void CoverageResults::Add(int32)\r\n" + match.Groups[2].Value;           
-           }
+           }*/
            return match.Groups[1].Value + match.Groups[2].Value + "\r\nldc.i4.s   " + (m_Point++) + "\r\ncall void CoverageResults::Add(int32)";
         }
 

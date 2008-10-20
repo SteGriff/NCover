@@ -26,7 +26,7 @@ namespace UnCover
                 ReportName = "Coverage";
 
             var generatedFiles = new List<string>();
-            string[] assemblies = Assemblies;//.Split(',');
+            string[] assemblies = Assemblies;
             if (Action.ToLower().Equals("report"))
             {
                 foreach (var assembly in assemblies)
@@ -59,7 +59,11 @@ namespace UnCover
 @"<Results Percentage='" + coverage + "'></Results>"
 + "</Coverage>");
 
-                        Console.WriteLine("##teamcity[buildStatisticValue key='" + ReportName + "' value='" + coverage + "']");
+						Console.WriteLine("##teamcity[progressMessage '"+ ReportName  + "=" + coverage + "']");
+                        Console.WriteLine("##teamcity[buildStatisticValue key='" + ReportName + "' value='" + coverage + "']");                        
+File.WriteAllText(@"TeamCity-info.xml", @"<build>
+   <statisticValue key='graph2Key' value='" + coverage + @"'/>
+</build>");
                     }
                     generatedFiles.Add(coverageFile);                    
                     AssemblyInstrumenter.RestoreUninstrumentedAssembly(assembly);
@@ -82,7 +86,8 @@ namespace UnCover
 
         private static string GetCoverageFile(string assembly)
         {
-            return Path.Combine(Path.GetDirectoryName(assembly), Path.GetFileNameWithoutExtension(assembly) + ".coverage.xml");
+			//Path.GetFileNameWithoutExtension(
+            return Path.Combine(Path.GetDirectoryName(assembly), assembly + ".coverage.xml");
         }
     }
 }
