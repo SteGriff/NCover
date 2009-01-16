@@ -1,0 +1,110 @@
+﻿<Application x:Class="SvnTracker.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Model="clr-namespace:SvnTracker.Model"
+    StartupUri="Window1.xaml">
+    <Application.Resources>
+        
+        <ObjectDataProvider x:Key="model" 
+                            ObjectType="{x:Type Model:ModelFactory}" 
+                            MethodName="get_Instance"/>
+        
+        <DataTemplate DataType="{x:Type Model:DirModel}">
+            <StackPanel>
+                <Line></Line>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Checked out Revision: " />
+                    <TextBlock Text="{Binding CurrentRevision}" />
+                </StackPanel>
+                <TextBlock Text="Pending Revisions:" />
+                <ListBox ItemsSource="{Binding OutstandingChanges}" BorderThickness="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Expander>
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Revision}"/>
+                                        <TextBlock Text=": "/>
+                                        <TextBlock Text="{Binding User}"/>
+                                        <TextBlock Text=": "/>
+                                        <TextBlock Text="{Binding Message}"/>                                    
+                                    </StackPanel>
+                                </Expander.Header>
+                                <ListBox ItemsSource="{Binding Files}" BorderThickness="0">
+                                    <ListBox.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White" />
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="White" />
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="White" />
+                                    </ListBox.Resources>
+
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal"  >
+                                                <TextBlock Style="{DynamicResource fileModification}" Text="{Binding Action}"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Style="{DynamicResource fileModification}" Text="{Binding RelativePath}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>                            
+                            </Expander>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Checkout Dir:"/> 
+                    <TextBlock Text="{Binding MonitoredDir}"/>                    
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type Model:HomeModel}">
+            <StackPanel>
+                
+                <TextBlock>Start monitoring a checked out svn directory now:</TextBlock>
+                <Button Click="Button_Click" Tag="{Binding}">Browse...</Button>
+                
+                <TextBox Text="{Binding Source={StaticResource model}, Path=SvnDir}"/>
+                <TextBox Text="{Binding Source={StaticResource model}, Path=PollIntervalInSeconds}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="fileModification" TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Action}" Value="Added">
+                    <Setter Property="Foreground" Value="Green"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Action}" Value="Modified">
+                    <Setter Property="Foreground" Value="Blue"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Action}" Value="Deleted">
+                    <Setter Property="Foreground" Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="visibleIfChanges" TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasChanges}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding HasChanges}" Value="false">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="boldIfChanges" TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasChanges}" Value="true">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding HasChanges}" Value="false">
+                    <Setter Property="FontWeight" Value="Normal"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Application.Resources>
+</Application>

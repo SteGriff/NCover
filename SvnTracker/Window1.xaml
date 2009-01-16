@@ -1,0 +1,45 @@
+﻿<Window x:Class="SvnTracker.Window1" x:Name="MainWin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:View="clr-namespace:SvnTracker.View"
+    Title="SvnMon" SizeToContent="WidthAndHeight" ShowInTaskbar="False" Opacity="1">
+    <StackPanel>
+      <View:NotifyIcon
+                x:Name="notifyIcon"
+                Text="{Binding ElementName=tipText,Path=Text}"
+                BalloonTipIcon="Info"
+                MouseDoubleClick="OnNotifyIconDoubleClick">
+        <View:NotifyIcon.ContextMenu>
+          <ContextMenu>
+            <MenuItem Header="Open" Click="OnOpenClick" />
+            <MenuItem Header="Exit" Click="OnExitClick" />
+          </ContextMenu>
+        </View:NotifyIcon.ContextMenu>
+      </View:NotifyIcon>
+
+      <Grid>
+      <TabControl x:Name="MonitoredDirsTabControl" 
+                  ItemsSource="{Binding Source={StaticResource model}, Path=Models}" 
+                  Height="206">
+        <TabControl.ItemTemplate>
+          <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="{Binding Path=URLBase}" Style="{DynamicResource boldIfChanges}"/>
+              <TextBlock Style="{DynamicResource visibleIfChanges}"> (</TextBlock>
+              <TextBlock Style="{DynamicResource visibleIfChanges}" Text="{Binding OutstandingChanges.Count}"></TextBlock>
+              <TextBlock Style="{DynamicResource visibleIfChanges}">) </TextBlock>
+              <Button ToolTip="Close" 
+                      Tag="{Binding}" 
+                      Click="CloseTab"
+                      Visibility="{Binding ClosableVisibility}"
+                      >
+                <Image Source="Resources\close.bmp"  />
+              </Button>
+            </StackPanel>
+          </DataTemplate>
+        </TabControl.ItemTemplate>
+      </TabControl>
+      </Grid>
+      <!--TextBlock Text="{Binding }"></TextBlock-->
+    </StackPanel>
+</Window>
