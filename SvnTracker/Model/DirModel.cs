@@ -236,10 +236,10 @@ namespace SvnTracker.Model
                 case "A":
                     return Action.Added;
 
-                case "U":
-                    return Action.Added;
+                case "M":
+                    return Action.Modified;
                 case "D":
-                    return Action.Added;
+                    return Action.Deleted;
                 default:
                     throw new Exception("Unknown action " + value);
             }
@@ -275,7 +275,11 @@ namespace SvnTracker.Model
 
         public void Dispose()
         {
+            if (m_Monitor == null)
+                return;
+
             m_Monitor.Dispose();
+            m_Monitor = null;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
