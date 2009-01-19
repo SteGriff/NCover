@@ -118,6 +118,13 @@ namespace SvnTracker.Model
         readonly Dictionary<string, LogEntry> m_UrlRevisionCache = new Dictionary<string, LogEntry>();
         private Dispatcher m_dispatcher;
 
+        private string m_CurrentUser;
+        public string CurrentUser
+        {
+            get { return m_CurrentUser ?? Environment.UserName; }
+            set { m_CurrentUser = value; }
+        }
+
         private void MonitorDir(string dir)
         {
             var xdoc = GetXml(dir, "info --xml");
@@ -127,19 +134,18 @@ namespace SvnTracker.Model
 
             URL = xdoc.SelectSingleNode(xpath).Value;
             CurrentRevision = Int64.Parse(xdoc.SelectSingleNode(xpath2).Value);
-            if (OutstandingChanges.Count > 0)
-            {
-                CurrentRevision = Math.Max(CurrentRevision, OutstandingChanges.Max(change => change.Revision));
-            }
+            MaxKnownRevision = Math.Max(CurrentRevision, MaxKnownRevision);
+            
             xdoc = GetXml(dir, "info " + URL + " --xml ");
             int repositoryRevision = Int32.Parse(xdoc.SelectSingleNode(xpath2).Value);
 
-            if (repositoryRevision <= CurrentRevision)
+            if (repositoryRevision <= MaxKnownRevision)
             {
                 return;
             }
 
-            for (long revision = CurrentRevision + 1; revision <= repositoryRevision; revision++)
+            var x = new NewList();
+            for (long revision = MaxKnownRevision + 1; revision <= repositoryRevision; revision++)
             {
                 LogEntry logEntry;
                 var key = URL + "@" + revision;
@@ -151,44 +157,33 @@ namespace SvnTracker.Model
                         m_UrlRevisionCache.Add(key, logEntry);
                     }
                 }
-            }
-
-            //this is not the right dispatcher for the right thread?:
-            m_dispatcher.Invoke(new UpdateUIDelegate(UpdateUI),new object[] { new X
-                         {
-                             dir = dir,
-                             currentRevision = CurrentRevision,
-                             url = URL,
-                             repositoryRevision = repositoryRevision
-                         }});
-        }
-
-        public class X
-        {
-            public string dir { get; set;}
-            public long currentRevision { get; set; }
-            public string url { get; set; }
-            public int repositoryRevision { get; set; }
-        }
-
-        public delegate void UpdateUIDelegate(X args);
-        private void UpdateUI(X args)
-        {
-            OutstandingChanges.Clear();
-            for (long revision = args.currentRevision + 1; revision <= args.repositoryRevision; revision++)
-            {
-                LogEntry logEntry;
-                if (m_UrlRevisionCache.TryGetValue(args.url + "@" + revision, out logEntry) && logEntry.IsRelevant)
+                if (logEntry != null)
                 {
-                    OutstandingChanges.Add(logEntry);
+                    x.Entries.Add(logEntry);
                 }
             }
+            MaxKnownRevision = repositoryRevision;
+            m_dispatcher.Invoke(new UpdateUIDelegate(UpdateUI),new object[] { x });            
+        }
+
+        private long MaxKnownRevision { get; set; }
+
+        public class NewList
+        {
+            public List<LogEntry> Entries = new List<LogEntry>();
+        }
+
+        public delegate void UpdateUIDelegate(NewList args);
+        private void UpdateUI(NewList args)
+        {
+            OutstandingChanges.Clear();
+            args.Entries.ForEach(OutstandingChanges.Add);
 
             if (m_Monitor != null)
             {
                 m_Monitor.Dispose();
             }
-            m_Monitor = new LocalModificationsMonitor(this, args.dir, OutstandingChanges.SelectMany(change => change.Files));
+            m_Monitor = new LocalModificationsMonitor(this, MonitoredDir, OutstandingChanges.SelectMany(change => change.Files));
 
             if (CheckinOccured != null)
                 CheckinOccured(OutstandingChanges);
@@ -196,7 +191,7 @@ namespace SvnTracker.Model
             Changed("HasChanges");
         }
 
-        private static LogEntry GetLogEntry(string dir, string url, long revision)
+        private LogEntry GetLogEntry(string dir, string url, long revision)
         {
             XmlDocument xdoc = GetXml(dir, "log " + url + " -r " + revision + " -v --xml ");
 
@@ -207,10 +202,10 @@ namespace SvnTracker.Model
                 return null;    
             }
 
-            var logEntry = new LogEntry(revision)
+            var logEntry = new LogEntry(revision, CurrentUser)
                                {
                                    BaseURL = url,
-                                   Message = messageNode.Value,
+                                   Message = messageNode == null? "Naughty " + authorNode.Value + " didn't leave a log message": messageNode.Value,
                                    User = authorNode.Value
                                };
 
@@ -235,7 +230,6 @@ namespace SvnTracker.Model
             {
                 case "A":
                     return Action.Added;
-
                 case "M":
                     return Action.Modified;
                 case "D":

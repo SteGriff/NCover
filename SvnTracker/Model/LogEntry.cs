@@ -4,8 +4,11 @@ namespace SvnTracker.Model
 {
     public class LogEntry : IChange
     {
-        public LogEntry(long revision)
+        private readonly string m_CurrentUser;
+
+        public LogEntry(long revision, string currentUser)
         {
+            m_CurrentUser = currentUser;
             Revision = revision;
             Files = new List<SvnPath>();
         }
@@ -22,11 +25,15 @@ namespace SvnTracker.Model
 
         /// <summary>
         /// If you've checked out trunk and someone copies it to tags that's not relevant.
+        /// Or if you are the user that made the change.
         /// </summary>
         public bool IsRelevant
         {
             get
             {
+                if (User == m_CurrentUser)
+                    return false;
+
                 foreach (var file in Files)
                 {
                     if (file.Path.Contains(file.Root))

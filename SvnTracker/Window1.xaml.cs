@@ -50,7 +50,7 @@ namespace SvnTracker
             int countOfDistinctFilesTouched = changes.SelectMany(change => change.Files)
                 .Select(path => path.Path).Distinct().Count();
 
-            if (!changes.Any())
+            if (!changes.Any(log => log.IsRelevant))
             {
                 return;
             }

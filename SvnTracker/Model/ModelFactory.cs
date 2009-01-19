@@ -33,7 +33,7 @@ namespace SvnTracker.Model
                     factory = new ModelFactory
                                   {
                                       SvnDir = @"c:\Program Files\CollabNet Subversion Server",
-                                      PollIntervalInSeconds = 10,
+                                      PollIntervalInSeconds = 10,                                      
                                   };
                 }
                 if (!factory.Models.Any())

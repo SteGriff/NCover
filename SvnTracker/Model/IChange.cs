@@ -7,6 +7,7 @@ namespace SvnTracker.Model
         long Revision { get; }
         string User { get; }
         string Message { get; }
-        IList<SvnPath> Files { get; }        
+        IList<SvnPath> Files { get; }
+        bool IsRelevant { get; }
     }
 }
