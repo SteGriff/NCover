@@ -42,7 +42,10 @@ namespace SvnTracker.Model
                 }
 
                 int j = 0;
-                for (int i = start; i < rootSegments.Length && rootSegments[i] == relativeSegments[j]; i++, j++)
+                for (int i = start; 
+                    i < rootSegments.Length && 
+                    j < relativeSegments.Length && 
+                    rootSegments[i] == relativeSegments[j]; i++, j++)
                 {                       
                 }
 

@@ -20,6 +20,13 @@ namespace SvnTracker.Model
         private LocalModificationsMonitor m_Monitor;
         private Thread m_thread;
 
+        private ISubversion m_Subversion = new Subversion();
+        public ISubversion Subversion
+        {
+            get { return m_Subversion; }
+            set { m_Subversion = value; }
+        }
+
         private string m_MonitoredDir;
         public string MonitoredDir
         {
@@ -96,23 +103,24 @@ namespace SvnTracker.Model
             {
 
                 Thread.Sleep(1000);
-                Update();
+                try {
+                    Update();
+                 } 
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message + e.StackTrace);
+                }   
                 Thread.Sleep(ModelFactory.Instance.PollIntervalInSeconds * 1000);
             }
         }
 
         public bool Cancelled { get; set; }
 
-        private void Update()
+        internal void Update()
         {
-            try
-            {
+            
                 MonitorDir(MonitoredDir);
-            } 
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message + e.StackTrace);
-            }
+            
         }
 
         readonly Dictionary<string, LogEntry> m_UrlRevisionCache = new Dictionary<string, LogEntry>();
@@ -127,7 +135,9 @@ namespace SvnTracker.Model
 
         private void MonitorDir(string dir)
         {
-            var xdoc = GetXml(dir, "info --xml");
+            var xdoc = new XmlDocument();
+            
+            xdoc.LoadXml(Subversion.GetInfo(dir));
 
             const string xpath = "/info/entry[1]/url/text()";
             const string xpath2 = "/info/entry[1]/@revision";
@@ -136,7 +146,7 @@ namespace SvnTracker.Model
             CurrentRevision = Int64.Parse(xdoc.SelectSingleNode(xpath2).Value);
             MaxKnownRevision = Math.Max(CurrentRevision, MaxKnownRevision);
             
-            xdoc = GetXml(dir, "info " + URL + " --xml ");
+            xdoc.LoadXml(Subversion.GetInfo(dir, URL));
             int repositoryRevision = Int32.Parse(xdoc.SelectSingleNode(xpath2).Value);
 
             if (repositoryRevision <= MaxKnownRevision)
@@ -193,8 +203,9 @@ namespace SvnTracker.Model
 
         private LogEntry GetLogEntry(string dir, string url, long revision)
         {
-            XmlDocument xdoc = GetXml(dir, "log " + url + " -r " + revision + " -v --xml ");
-
+            var xdoc = new XmlDocument();
+            xdoc.LoadXml( Subversion.GetLog(dir, url, revision));
+ 
             var messageNode = xdoc.SelectSingleNode("/log/logentry/msg/text()");
             var authorNode = xdoc.SelectSingleNode("/log/logentry/author/text()");
             if (authorNode == null)
@@ -239,25 +250,6 @@ namespace SvnTracker.Model
             }
         }
 
-        private static XmlDocument GetXml(string dir, string args)
-        {
-            var settings = new ProcessStartInfo
-                               {
-                                   FileName = Path.Combine(ModelFactory.Instance.SvnDir, "svn.exe"),
-                                   Arguments = args,
-                                   UseShellExecute = false,
-                                   WorkingDirectory = dir,
-                                   RedirectStandardOutput = true,
-                                   CreateNoWindow = true
-                               };
-            var proc = Process.Start(settings);
-            if (proc == null) return null;
-            proc.WaitForExit();
-
-            var xdoc = new XmlDocument();
-            xdoc.LoadXml(proc.StandardOutput.ReadToEnd());
-            return xdoc;
-        }
 
         public void RaiseConflictDetected(SvnPath path, string file, WatcherChangeTypes changeType)
         {

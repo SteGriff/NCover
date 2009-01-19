@@ -33,7 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -84,14 +87,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lang\EventHandlerExtentions.cs" />
+    <Compile Include="Lang\SpecExtentions.cs" />
     <Compile Include="Model\IChange.cs" />
     <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\ISubversion.cs" />
     <Compile Include="Model\LocalModificationsMonitor.cs" />
     <Compile Include="Model\LogEntry.cs" />
     <Compile Include="Model\DirModel.cs" />
     <Compile Include="Model\ModelFactory.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\StubModel.cs" />
+    <Compile Include="Model\Stubversion.cs" />
+    <Compile Include="Model\Subversion.cs" />
     <Compile Include="Model\SvnPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -106,6 +113,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TestData\UpToDateTest.cs" />
     <Compile Include="View\BallonTipIcon.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -148,6 +156,9 @@
     <Content Include="Resources\close.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestData\EmptyMessage\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
