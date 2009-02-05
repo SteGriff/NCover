@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<info>
+<entry
+   kind="dir"
+   path="trunk"
+   revision="6">
+<url>file:///c:/repo/example/trunk</url>
+<repository>
+<root>file:///c:/repo</root>
+<uuid>85349945-3c16-e849-9383-c98c94814b3e</uuid>
+</repository>
+<commit
+   revision="6">
+<author>gilescope</author>
+<date>2009-01-19T05:56:38.094000Z</date>
+</commit>
+</entry>
+</info>

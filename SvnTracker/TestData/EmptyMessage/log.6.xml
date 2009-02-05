@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<log>
+<logentry
+   revision="6">
+<author>gilescope</author>
+<date>2009-01-19T05:56:38.094000Z</date>
+<paths>
+<path
+   action="M">/example/trunk/readme.txt</path>
+</paths>
+<msg></msg>
+</logentry>
+</log>

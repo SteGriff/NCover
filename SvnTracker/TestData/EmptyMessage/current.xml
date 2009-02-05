@@ -1,0 +1,22 @@
+<?xml version='1.0'?>
+<info>
+<entry
+   kind='dir'
+   path='.'
+   revision='5'>
+<url>file:///c:/repo/example/trunk</url>
+<repository>
+<root>file:///c:/repo</root>
+<uuid>85349945-3c16-e849-9383-c98c94814b3e</uuid>
+</repository>
+<wc-info>
+<schedule>normal</schedule>
+<depth>infinity</depth>
+</wc-info>
+<commit
+   revision='2'>
+<author>gilescope</author>
+<date>2009-01-07T09:38:04.825200Z</date>
+</commit>
+</entry>
+</info>

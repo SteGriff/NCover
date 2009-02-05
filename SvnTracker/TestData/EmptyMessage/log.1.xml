@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<log>
+<logentry
+   revision='1'>
+<author>gilescope</author>
+<date>2009-01-06T18:15:52.733000Z</date>
+<paths>
+<path
+   action='A'>/example/branches</path>
+<path
+   action='A'>/example/tags</path>
+<path
+   action='A'>/example</path>
+<path
+   action='A'>/example/trunk</path>
+</paths>
+<msg>First import</msg>
+</logentry>
+</log>

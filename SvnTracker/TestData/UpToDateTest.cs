@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SvnTracker.Lang;
 using SvnTracker.Model;
 
@@ -19,7 +18,7 @@ namespace SvnTracker.TestData
                    {@"file:///c:/repo/example/trunk", GetCurrentRepo(1, "gilescope")},
                    {@"file:///c:/repo/example/trunk@1", GetLogEntry(1, "gilescope")},
                });
-            model.HasChanges.ShouldEqual(false);
+            model.Assert(c=>!c.HasChanges);
         }
 
         [Test]
@@ -31,13 +30,18 @@ namespace SvnTracker.TestData
                    {@"file:///c:/repo/example/trunk", GetCurrentRepo(6, "Mr Dee")},
                    {@"file:///c:/repo/example/trunk@6", GetLogEntry(6, "Mr Dee")},
                });
-            model.HasChanges.ShouldEqual(true);
-            model.OutstandingChanges.Count.ShouldEqual(1);
-            IChange change = model.OutstandingChanges[0];
-            change.User.ShouldEqual("Mr Dee");
-            change.Revision.ShouldEqual(6);
-            change.IsRelevant.ShouldEqual(true);
+
+            string x = null;
+            model.Assert(
+//                m=>m.HasChanges,
+//                m=>m.OutstandingChanges.Count == 1,
+//                m=>m.OutstandingChanges[0].User == "Mr Dee"
+//                m=>m.OutstandingChanges[0].Revision == 6,
+                m=>m.OutstandingChanges[0].IsRelevant
+//                m=>x == ""
+                );
         }
+
 
         [Test]
         public void WhenRepositryAheadDueToSomeoneElseShouldNeeedUpdatingUnlessNotChangedAnyFilesInSubtree()
@@ -51,12 +55,16 @@ namespace SvnTracker.TestData
                       "<path action='A'>/OtherSubTree/branches</path>",
                   })},
                });
-            model.HasChanges.ShouldEqual(true);
-            model.OutstandingChanges.Count.ShouldEqual(1);
-            IChange change = model.OutstandingChanges[0];
-            change.User.ShouldEqual("Mr Dee");
-            change.Revision.ShouldEqual(6);
-            change.IsRelevant.ShouldEqual(true);
+
+            model.Assert(
+                c=>c.HasChanges, 
+                c=>c.OutstandingChanges.Count == 1);
+
+            model.OutstandingChanges[0].Assert(
+                c=>c.User == "Mr Dee",
+                c=>c.Revision == 6,
+                c=>!c.IsRelevant
+                );
         }
 
         [Test]
@@ -69,13 +77,14 @@ namespace SvnTracker.TestData
                    {@"file:///c:/repo/example/trunk@6", GetLogEntry(6, "gilescope")},
                });
 
-            model.HasChanges.ShouldEqual(true);
-            model.OutstandingChanges.Count.ShouldEqual(1);
-            
-            IChange change = model.OutstandingChanges[0];
-            change.User.ShouldEqual("gilescope");
-            change.Revision.ShouldEqual(6);
-            change.IsRelevant.ShouldEqual(false);
+            model.Assert(
+                c => c.HasChanges,
+                c => c.OutstandingChanges.Count == 1);
+
+            model.OutstandingChanges[0].Assert(
+                c => c.User == "gilescope",
+                c => c.Revision == 6,
+                c => !c.IsRelevant);
         }
 
         
@@ -104,7 +113,6 @@ namespace SvnTracker.TestData
                   } 
                 );
         }
-
 
         private static string GetLogEntry(long revision, string author, string[] files)
         {
