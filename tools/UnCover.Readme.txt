@@ -7,3 +7,11 @@
 		ContinueOnError="false" />
 	<UnCover Action="Report" Assemblies="$(TargetDir)\SharpCover.exe"/>
   </Target>
+
+For Graph put:
+
+In C:\Users\gilescope\.BuildServer\config\main-config.xml under the <server> tag put: 
+
+  <graph id="todo">
+    <valueType key="todo" title="ToDos"/>
+  </graph>  
