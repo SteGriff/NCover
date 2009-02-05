@@ -1,11 +1,10 @@
 using System;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
-using System.Collections.Specialized;
-using SharpCover.Utilities;
 using SharpCover.Actions;
-using SharpCover;
 using SharpCover.Logging;
+using SharpCover.Utilities;
 
 namespace SharpCover.CommandLine
 {
@@ -29,10 +28,11 @@ namespace SharpCover.CommandLine
 				Logger.OutputType.Level = TraceLevel.Verbose;
 
 			SharpCoverAction sharpcoverAction = new SharpCoverAction();
-			
-			ReportSettings settings = GetSettings(parameters);
+			sharpcoverAction.Settings = GetSettings(parameters);
 
-			AddFiles(sharpcoverAction.Filenames, settings, parameters[Constants.RECURSE]);
+            // TODO: allow multiple "recurse" parameters to change different filetypes in one coverage run
+
+            AddFiles(sharpcoverAction.Filenames, sharpcoverAction.Settings, parameters[Constants.RECURSE]);
 			
 			sharpcoverAction.Execute();
 		}
@@ -47,8 +47,8 @@ namespace SharpCover.CommandLine
 			if(path[0] != '\\')
 				path = Path.Combine(settings.BaseDir, dirAndPattern);
 
-			DirectoryInfo dir = new DirectoryInfo(Path.GetDirectoryName(path));
-			string pattern = Path.GetExtension(path);
+			DirectoryInfo dir = new DirectoryInfo(Path.GetFullPath(Path.GetDirectoryName(path)));
+            string pattern = Path.GetFileName(dirAndPattern);
 
 			AddFiles(files, settings, dir, pattern);
 		}

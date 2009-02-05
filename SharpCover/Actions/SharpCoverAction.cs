@@ -1,10 +1,10 @@
 using System;
-using System.IO;
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Specialized;
-using SharpCover.Logging;
+using System.Diagnostics;
+using System.IO;
 using SharpCover.Instrumenting;
+using SharpCover.Logging;
 
 namespace SharpCover.Actions
 {
@@ -14,15 +14,11 @@ namespace SharpCover.Actions
 		{
 			this.settings = new ReportSettings();
 			this.filenames = new StringCollection();
-			IList parsers = new ArrayList();
-			parsers.Add(new SharpCover.Parsing.CSharp.Parser(this.settings));
-			parsers.Add(new SharpCover.Parsing.VB.Parser(this.settings));
-			this.instrumenter = new FileCopyInstrumenter(parsers);
 		}
 
-		private StringCollection	filenames;
-		private ReportSettings		settings;
-		private Instrumenter		instrumenter;
+		private StringCollection filenames;
+		private ReportSettings settings;
+		private Instrumenter instrumenter;
 
 		public StringCollection Filenames
 		{
@@ -44,6 +40,11 @@ namespace SharpCover.Actions
 
 		public decimal Execute()
 		{
+            IList parsers = new ArrayList();
+            parsers.Add(new SharpCover.Parsing.CSharp.Parser(this.settings));
+            parsers.Add(new SharpCover.Parsing.VB.Parser(this.settings));
+            this.instrumenter = new FileCopyInstrumenter(parsers);
+
 			Trace.WriteLineIf(Logger.OutputType.TraceInfo, String.Format("Instrumenting {0} files for test coverage analysis.", this.Filenames.Count)); 
 			CoveragePoint[] points = InstrumentFiles();
 			
