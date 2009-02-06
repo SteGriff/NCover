@@ -2,10 +2,10 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
-using System.Xml.Xsl;
 using System.Xml.XPath;
-using SharpCover.Utilities;
+using System.Xml.Xsl;
 using SharpCover.Logging;
+using SharpCover.Utilities;
 
 namespace SharpCover.Reporting
 {

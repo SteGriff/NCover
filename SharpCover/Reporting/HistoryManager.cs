@@ -1,8 +1,7 @@
-using System;
-using System.IO;
 using System.Diagnostics;
-using SharpCover.Utilities;
+using System.IO;
 using SharpCover.Logging;
+using SharpCover.Utilities;
 
 namespace SharpCover.Reporting
 {

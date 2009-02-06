@@ -1,10 +1,10 @@
 using System;
-using System.Diagnostics;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.IO;
+using SharpCover.Logging;
 using SharpCover.Reporting;
 using SharpCover.Utilities;
-using SharpCover.Logging;
 
 namespace SharpCover.Actions
 {

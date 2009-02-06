@@ -1,7 +1,6 @@
-using System;
 using System.IO;
-using SharpCover.Utilities;
 using SharpCover.Collections;
+using SharpCover.Utilities;
 
 namespace SharpCover.Reporting
 {

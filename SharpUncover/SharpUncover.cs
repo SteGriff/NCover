@@ -1,10 +1,10 @@
 using System;
-using System.Diagnostics;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using SharpCover;
 using SharpCover.Actions;
-using SharpCover.Utilities;
 using SharpCover.Logging;
+using SharpCover.Utilities;
 
 namespace SharpUncover
 {

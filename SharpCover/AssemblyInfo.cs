@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("SharpCover")]
 [assembly: AssemblyDescription("THE C# code coverage tool")]

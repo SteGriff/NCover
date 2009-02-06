@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Specialized;
 using SharpCover.Actions;
-using SharpCover.Utilities;
 using SharpCover.Logging;
+using SharpCover.Utilities;
 
 namespace SharpCover.CommandLine
 {

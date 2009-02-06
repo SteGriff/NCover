@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
+using SharpCover.Instrumenting;
 using SharpCover.Logging;
 using SharpCover.Utilities;
-using SharpCover.Instrumenting;
 
 namespace SharpCover.Actions
 {

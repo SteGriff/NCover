@@ -1,10 +1,4 @@
-using System;
-using System.Diagnostics;
-using System.Collections;
-using System.Collections.Specialized;
 using System.Xml.Serialization;
-using System.Xml;
-using System.IO;
 using SharpCover.Collections;
 
 namespace SharpCover.Reporting

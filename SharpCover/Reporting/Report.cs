@@ -1,5 +1,3 @@
-using System;
-using System.Drawing;
 using SharpCover.Collections;
 using SharpCover.Utilities;
 

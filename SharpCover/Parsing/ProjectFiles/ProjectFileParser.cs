@@ -1,7 +1,7 @@
-using System.Xml;
 using System;
 using System.IO;
 using System.Text;
+using System.Xml;
 
 namespace SharpCover.Parsing.ProjectFiles
 {

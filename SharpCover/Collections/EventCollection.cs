@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Text;
-using System.Xml.Serialization;
 using SharpCover.Reporting;
 
 namespace SharpCover.Collections

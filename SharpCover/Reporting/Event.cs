@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using SharpCover.Utilities;
 
 namespace SharpCover.Reporting

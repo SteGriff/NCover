@@ -1,7 +1,7 @@
 using System;
-using System.Text;
-using System.Drawing;
 using System.Collections;
+using System.Drawing;
+using System.Text;
 
 namespace SharpCover.Utilities
 {

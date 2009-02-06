@@ -1,9 +1,7 @@
 using System.Diagnostics;
-
 using NAnt.Core;
-using NAnt.Core.Types;
 using NAnt.Core.Attributes;
-
+using NAnt.Core.Types;
 using SharpCover.Logging;
 
 	[TaskName("sharpcover")]
