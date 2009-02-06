@@ -37,36 +37,42 @@ namespace SharpCover.Parsing.ProjectFiles
 
             string assemblyReference = typeof(Results).Assembly.FullName;
             XmlElement itemGroup = (XmlElement)doc.DocumentElement.SelectSingleNode("def:ItemGroup", nsmgr);
-            XmlElement reference = (XmlElement)itemGroup.SelectSingleNode(string.Format("def:Reference[@Include='{0}']", assemblyReference), nsmgr);
+            XmlElement existingReference = (XmlElement)itemGroup.SelectSingleNode(string.Format("def:Reference[@Include='{0}']", assemblyReference), nsmgr);
             string fileContent = null;
+            string namespaceURI = null;
 
-            if (reference == null)
+            if (existingReference == null)
             {
-                reference = doc.CreateElement("Reference");
+                XmlElement newReference = doc.CreateElement("Reference", namespaceURI);
 
-                XmlAttribute attr = doc.CreateAttribute("Include");
+                XmlAttribute attr = doc.CreateAttribute("Include", namespaceURI);
                 attr.Value = assemblyReference;
 
-                reference.Attributes.Append(attr);
+                newReference.Attributes.Append(attr);
 
-                XmlElement specificVersion = doc.CreateElement("SpecificVersion");
+                XmlElement specificVersion = doc.CreateElement("SpecificVersion", namespaceURI);
                 XmlText specificVersionValue = doc.CreateTextNode(bool.FalseString);
                 specificVersion.AppendChild(specificVersionValue);
-                reference.AppendChild(specificVersion);
+                newReference.AppendChild(specificVersion);
 
-                XmlElement hintPath = doc.CreateElement("HintPath");
+                XmlElement hintPath = doc.CreateElement("HintPath", namespaceURI);
                 XmlText hintPathValue = doc.CreateTextNode(typeof(Results).Assembly.Location);
                 hintPath.AppendChild(hintPathValue);
-                reference.AppendChild(hintPath);
+                newReference.AppendChild(hintPath);
 
-                itemGroup.AppendChild(reference);
+                itemGroup.AppendChild(newReference);
 
-                StringBuilder sb = new StringBuilder();
-
-                using (StringWriter sw = new StringWriter(sb))
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    doc.Save(sw);
-                    fileContent = sb.ToString();
+                    StreamWriter writer = new StreamWriter(ms, Encoding.UTF8);
+
+                    doc.Save(writer);
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    using (StreamReader sr = new StreamReader(ms, Encoding.UTF8, false))
+                    {
+                        fileContent = sr.ReadToEnd();
+                    }
                 }
             }
 
@@ -89,5 +95,6 @@ namespace SharpCover.Parsing.ProjectFiles
 		}
 
 		#endregion
+
 	}
 }
