@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
@@ -19,6 +20,7 @@ namespace SharpCover.Actions
 		private StringCollection filenames;
 		private ReportSettings settings;
 		private Instrumenter instrumenter;
+        private readonly CoveragePoint[] emptyPoints = new CoveragePoint[0];
 
 		public StringCollection Filenames
 		{
@@ -75,16 +77,16 @@ namespace SharpCover.Actions
 
 		private CoveragePoint[] InstrumentFiles()
 		{
-			ArrayList coveragePoints = new ArrayList();
+            List<CoveragePoint> coveragePoints = new List<CoveragePoint>();
 			
 			foreach(string filename in this.Filenames)
 			{
 				Trace.WriteLineIf(Logger.OutputType.TraceVerbose, "instrumenting file: " + filename);
 				
-				coveragePoints.AddRange(this.instrumenter.Instrument(filename));
+				coveragePoints.AddRange(this.instrumenter.Instrument(filename) ?? this.emptyPoints);
 			}
 		
-			return (CoveragePoint[])coveragePoints.ToArray(typeof(CoveragePoint));
+			return coveragePoints.ToArray();
 		}
 	}
 }

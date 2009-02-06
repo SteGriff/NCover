@@ -27,6 +27,11 @@ namespace SharpCover.Instrumenting
 					string instrumentedSrc = parser.Parse(filename);
 					points = parser.CoveragePoints;
 
+                    if (points == null)
+                    {
+                        return null;
+                    }
+
 					Trace.WriteLineIf(Logger.OutputType.TraceVerbose, String.Format("File: {0}, Points: {1}", new object[] { filename, points.Length }));
 
 					if (points.Length == 0)

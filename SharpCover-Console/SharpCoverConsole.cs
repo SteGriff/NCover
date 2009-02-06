@@ -30,9 +30,10 @@ namespace SharpCover.CommandLine
 			SharpCoverAction sharpcoverAction = new SharpCoverAction();
 			sharpcoverAction.Settings = GetSettings(parameters);
 
-            // TODO: allow multiple "recurse" parameters to change different filetypes in one coverage run
-
-            AddFiles(sharpcoverAction.Filenames, sharpcoverAction.Settings, parameters[Constants.RECURSE]);
+            foreach (var dirAndPattern in parameters[Constants.RECURSE].Split('|'))
+            {
+                AddFiles(sharpcoverAction.Filenames, sharpcoverAction.Settings, dirAndPattern);
+            }
 			
 			sharpcoverAction.Execute();
 		}

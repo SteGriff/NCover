@@ -26,7 +26,7 @@ namespace SharpCover
 			{
 				if(value != null)
 				{
-					this.basedir = value;
+					this.basedir = Path.GetFullPath(value);
 				}
 			}
 		}
