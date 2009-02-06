@@ -43,6 +43,7 @@ namespace SharpCover.Actions
             IList parsers = new ArrayList();
             parsers.Add(new SharpCover.Parsing.CSharp.Parser(this.settings));
             parsers.Add(new SharpCover.Parsing.VB.Parser(this.settings));
+            parsers.Add(new SharpCover.Parsing.ProjectFiles.ProjectFileParser());
             this.instrumenter = new FileCopyInstrumenter(parsers);
 
 			Trace.WriteLineIf(Logger.OutputType.TraceInfo, String.Format("Instrumenting {0} files for test coverage analysis.", this.Filenames.Count)); 
@@ -57,9 +58,19 @@ namespace SharpCover.Actions
 		private void SaveCoverage(CoveragePoint[] points)
 		{
 			Coverage coverage = new Coverage(this.Settings, points);
-			FileStream outputstream = new FileStream(this.Settings.ExpectedFilename, FileMode.Create);
-			
-			Coverage.SaveCoverage(outputstream, coverage);
+
+            string fileName = this.Settings.ExpectedFilename;
+
+            // create directory before writing file
+            if (!Directory.Exists(Path.GetDirectoryName(fileName)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+            }
+
+            using (FileStream outputstream = new FileStream(fileName, FileMode.Create))
+            {
+                Coverage.SaveCoverage(outputstream, coverage);
+            }
 		}
 
 		private CoveragePoint[] InstrumentFiles()
