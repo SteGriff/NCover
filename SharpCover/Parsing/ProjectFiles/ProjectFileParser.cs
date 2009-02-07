@@ -39,23 +39,22 @@ namespace SharpCover.Parsing.ProjectFiles
             XmlElement itemGroup = (XmlElement)doc.DocumentElement.SelectSingleNode("def:ItemGroup", nsmgr);
             XmlElement reference = (XmlElement)itemGroup.SelectSingleNode(string.Format("def:Reference[@Include='{0}']", assemblyReference), nsmgr);
             string fileContent = null;
-            string namespaceURI = null;
 
             if (reference == null)
             {
-                reference = doc.CreateElement("Reference", namespaceURI);
+                reference = doc.CreateElement("Reference");
 
-                XmlAttribute attr = doc.CreateAttribute("Include", namespaceURI);
+                XmlAttribute attr = doc.CreateAttribute("Include");
                 attr.Value = assemblyReference;
 
                 reference.Attributes.Append(attr);
 
-                XmlElement specificVersion = doc.CreateElement("SpecificVersion", namespaceURI);
+                XmlElement specificVersion = doc.CreateElement("SpecificVersion");
                 XmlText specificVersionValue = doc.CreateTextNode(bool.FalseString);
                 specificVersion.AppendChild(specificVersionValue);
                 reference.AppendChild(specificVersion);
 
-                XmlElement hintPath = doc.CreateElement("HintPath", namespaceURI);
+                XmlElement hintPath = doc.CreateElement("HintPath");
                 XmlText hintPathValue = doc.CreateTextNode(typeof(Results).Assembly.Location);
                 hintPath.AppendChild(hintPathValue);
                 reference.AppendChild(hintPath);
