@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace SharpCover.Parsing.VB
 {
@@ -10,11 +11,11 @@ namespace SharpCover.Parsing.VB
 		public Parser(ReportSettings Settings)
 		{
 			this.settings = Settings;
-			this.coveragepoints = new ArrayList();
+            this.coveragepoints = new List<CoveragePoint>();
 			
 			AddCoveragePointDelegate addpointdel = new AddCoveragePointDelegate(this.AddCoveragePoint);
 
-			this.matchers = new ArrayList();
+            this.matchers = new List<Matcher>(5);
 			//this.matchers.Add(new StatementMatcher(addpointdel));
 			this.matchers.Add(new ConditionalMatcher(addpointdel));
 			//this.matchers.Add(new CatchBlockMatcher(addpointdel));
@@ -29,19 +30,19 @@ namespace SharpCover.Parsing.VB
 		
 		private string source;
 		private string filename;
-		private ArrayList matchers;
-		private	ArrayList coveragepoints;
-		private ReportSettings settings;
+        private List<Matcher> matchers;
+        private List<CoveragePoint> coveragepoints;
+        private ReportSettings settings;
 		private MatchCollection namespaces;
-		
-		public ArrayList Matchers
+
+        public List<Matcher> Matchers
 		{
 			get{return this.matchers;}
 		}
 
 		public CoveragePoint[] CoveragePoints
 		{
-			get{return (CoveragePoint[])coveragepoints.ToArray(typeof(CoveragePoint));}
+			get{return coveragepoints.ToArray();}
 		}
 
 		public bool Accept(string filename)
@@ -67,7 +68,7 @@ namespace SharpCover.Parsing.VB
 		public string ParseString(string source)
 		{
 			this.source = source;
-			this.coveragepoints = new ArrayList();
+			this.coveragepoints = new List<CoveragePoint>();
 			
 			Matcher.Comments = new Comments(this.source);
 

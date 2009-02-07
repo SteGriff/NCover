@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using SharpCover.Instrumenting;
 using SharpCover.Logging;
+using SharpCover.Parsing;
 
 namespace SharpCover.Actions
 {
@@ -42,11 +42,11 @@ namespace SharpCover.Actions
 
 		public decimal Execute()
 		{
-            IList parsers = new ArrayList();
+            List<IParse> parsers = new List<IParse>(3);
             parsers.Add(new SharpCover.Parsing.CSharp.Parser(this.settings));
             parsers.Add(new SharpCover.Parsing.VB.Parser(this.settings));
             parsers.Add(new SharpCover.Parsing.ProjectFiles.ProjectFileParser());
-            this.instrumenter = new FileCopyInstrumenter(parsers);
+            this.instrumenter = new FileCopyInstrumenter(parsers.ToArray());
 
 			Trace.WriteLineIf(Logger.OutputType.TraceInfo, String.Format("Instrumenting {0} files for test coverage analysis.", this.Filenames.Count)); 
 			CoveragePoint[] points = InstrumentFiles();

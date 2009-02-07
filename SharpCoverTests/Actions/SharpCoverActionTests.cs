@@ -1,8 +1,7 @@
-using System.Collections;
-using System.IO;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using NUnit.Framework;
-using SharpCover;
 using SharpCover.Instrumenting;
 using SharpCover.Parsing;
 using SharpCover.Parsing.CSharp;
@@ -37,9 +36,9 @@ namespace SharpCover.Actions
 			ReportSettings rs = new ReportSettings();
 			this.action.Settings = rs;
 
-			ArrayList parsers = new ArrayList();
+            List<IParse> parsers = new List<IParse>(1);
 			parsers.Add(new Parser(rs));
-			Instrumenter instrumenter = new FileCopyInstrumenter(parsers);
+			Instrumenter instrumenter = new FileCopyInstrumenter(parsers.ToArray());
 			this.action.Instrumenter = instrumenter;
 
 			Assert.AreEqual(sc, this.action.Filenames);
@@ -50,9 +49,9 @@ namespace SharpCover.Actions
 		[Test]
 		public void TestExecute()
 		{
-			ArrayList parsers = new ArrayList();
+            List<IParse> parsers = new List<IParse>(1);
 			parsers.Add(new MockParser());
-			MockInstrumenter mi = new MockInstrumenter(parsers);
+			MockInstrumenter mi = new MockInstrumenter(parsers.ToArray());
 			this.action.Instrumenter = mi;
 			this.action.Settings.ReportDir = Path.GetTempPath();
 			this.action.Filenames.Add("foo.txt");

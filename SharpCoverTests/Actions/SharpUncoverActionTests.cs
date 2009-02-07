@@ -1,7 +1,6 @@
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
-using SharpCover;
 using SharpCover.Instrumenting;
 using SharpCover.Parsing;
 using SharpCover.Utilities;
@@ -49,9 +48,9 @@ namespace SharpCover.Actions
 		[Test]
 		public void TestExecute()
 		{
-			ArrayList parsers = new ArrayList();
+            List<IParse> parsers = new List<IParse>(1);
 			parsers.Add(new MockParser());
-			MockInstrumenter mi = new MockInstrumenter(parsers);
+			MockInstrumenter mi = new MockInstrumenter(parsers.ToArray());
 			this.action.Instrumenter = mi;
 			this.action.Settings.ReportDir = Path.GetTempPath();
 			

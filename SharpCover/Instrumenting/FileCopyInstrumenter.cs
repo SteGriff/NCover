@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using SharpCover.Logging;
@@ -9,7 +8,11 @@ namespace SharpCover.Instrumenting
 {
 	public class FileCopyInstrumenter : Instrumenter
 	{
-		public FileCopyInstrumenter(IList parsers) : base(parsers)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileCopyInstrumenter"/> class.
+        /// </summary>
+        /// <param name="parsers">The parsers.</param>
+		public FileCopyInstrumenter(IParse[] parsers) : base(parsers)
 		{
 		}
 

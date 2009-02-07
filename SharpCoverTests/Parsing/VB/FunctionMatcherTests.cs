@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace SharpCover.Parsing.VB
@@ -10,7 +10,7 @@ namespace SharpCover.Parsing.VB
 		public void SetUp()
 		{
 			i = 0;
-			at = new ArrayList();
+			at = new List<int>();
 		}
 
 		int i;
@@ -21,7 +21,8 @@ namespace SharpCover.Parsing.VB
 			return "SharpCover.Parsing.Vb.FunctionMatcherTests.At(" + i + ")";
 		}
 
-		static ArrayList at;
+        static List<int> at;
+
 		public static bool At(int i)
 		{
 			at.Add(i);

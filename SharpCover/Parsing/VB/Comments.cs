@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace SharpCover.Parsing.VB
 {
@@ -14,9 +15,9 @@ namespace SharpCover.Parsing.VB
 
 		private static Regex selectStringLiterals = new Regex("[^'](\"\"|\"" + @".*?[^\\]" + "\")", RegexOptions.Singleline | RegexOptions.Compiled);
 
-		private ArrayList comments;
+		private List<Insert> comments;
 
-		public ArrayList CommentPositions
+        public List<Insert> CommentPositions
 		{
 			get{return this.comments;}
 			set{this.comments = value;}
@@ -24,7 +25,7 @@ namespace SharpCover.Parsing.VB
 
 		private void IdentifyCommentsAndStringLiterals(string original)
 		{
-			this.comments = new ArrayList();
+            this.comments = new List<Insert>();
 
 			MatchCollection matches = selectStringLiterals.Matches(original);
 

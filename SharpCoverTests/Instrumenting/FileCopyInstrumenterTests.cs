@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using SharpCover.Parsing;
@@ -19,9 +19,9 @@ namespace SharpCover.Instrumenting
 		public void SetUp()
 		{
 			this.parser = new MockParser();
-			ArrayList parsers = new ArrayList();
+            List<IParse> parsers = new List<IParse>(1);
 			parsers.Add(parser);
-			this.instrumenter = new FileCopyInstrumenter(parsers);
+			this.instrumenter = new FileCopyInstrumenter(parsers.ToArray());
 		}
 
 		[Test]

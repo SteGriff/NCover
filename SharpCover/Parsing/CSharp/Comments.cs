@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace SharpCover.Parsing.CSharp
@@ -14,9 +14,9 @@ namespace SharpCover.Parsing.CSharp
 		private static Regex selectSingleLineComments = new Regex("[^']//.*", RegexOptions.Multiline | RegexOptions.Compiled);
 		private static Regex selectMultiLineComments = new Regex(@"[^']/\*.*?\*/", RegexOptions.Singleline | RegexOptions.Compiled);
 
-		private ArrayList comments;
+		private List<Insert> comments;
 
-		public ArrayList CommentPositions
+        public List<Insert> CommentPositions
 		{
 			get{return this.comments;}
 			set{this.comments = value;}
@@ -24,7 +24,7 @@ namespace SharpCover.Parsing.CSharp
 
 		private void IdentifyCommentsAndStringLiterals(string original)
 		{
-			this.comments = new ArrayList();
+            this.comments = new List<Insert>();
 
 			MatchCollection matches = selectStringLiterals.Matches(original);
 

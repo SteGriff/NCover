@@ -1,10 +1,15 @@
-using System.Collections;
+using SharpCover.Parsing;
 
 namespace SharpCover.Instrumenting
 {
 	public class MockInstrumenter : Instrumenter
 	{
-		public MockInstrumenter(IList parsers) : base(parsers)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MockInstrumenter"/> class.
+        /// </summary>
+        /// <param name="parsers">The parsers.</param>
+        public MockInstrumenter(IParse[] parsers)
+            : base(parsers)
 		{
 		}
 
