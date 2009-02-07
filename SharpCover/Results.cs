@@ -5,22 +5,13 @@ namespace SharpCover
 	[NoInstrument()]
 	public sealed class Results
 	{
+
 		private Results()
 		{
 		}
 
-		static Results()
-		{
-			results = new Hashtable();
-		}
-
-		private static Hashtable results;
-
-		public static void AddReport(string reportname, string outputfile)
-		{
-			ResultLogger logger = new ResultLogger(reportname, outputfile);
-			results[reportname] = logger;
-		}
+		private static Hashtable results = new Hashtable();
+        private static readonly object _createLock = new object();
 
 		/// <summary>
 		/// Indicates that a coverage point has been reached relating to the specific report.
@@ -29,19 +20,31 @@ namespace SharpCover
 		{
 			bool result = true;
 			
-			if(results[reportname] == null)
-				Results.AddReport(reportname, outputfile);
-	
 			ResultLogger logger = (ResultLogger)results[reportname];
-			
+
+            if (logger == null)
+            {
+                lock (_createLock)
+                {
+                    logger = (ResultLogger)results[reportname];
+
+                    if (logger == null)
+                    {
+                        logger = new ResultLogger(reportname, outputfile);
+                        results[reportname] = logger;
+                    }
+                }
+            }
+
 			try
 			{
-				logger.AddPoint(point);
+                logger.AddPoint(point);
 			}
 			catch
 			{
 				result = false;
 			}
+
 			return result;
 		}
 
