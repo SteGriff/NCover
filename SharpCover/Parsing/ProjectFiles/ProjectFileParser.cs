@@ -37,30 +37,30 @@ namespace SharpCover.Parsing.ProjectFiles
 
             string assemblyReference = typeof(Results).Assembly.FullName;
             XmlElement itemGroup = (XmlElement)doc.DocumentElement.SelectSingleNode("def:ItemGroup", nsmgr);
-            XmlElement existingReference = (XmlElement)itemGroup.SelectSingleNode(string.Format("def:Reference[@Include='{0}']", assemblyReference), nsmgr);
+            XmlElement reference = (XmlElement)itemGroup.SelectSingleNode(string.Format("def:Reference[@Include='{0}']", assemblyReference), nsmgr);
             string fileContent = null;
             string namespaceURI = null;
 
-            if (existingReference == null)
+            if (reference == null)
             {
-                XmlElement newReference = doc.CreateElement("Reference", namespaceURI);
+                reference = doc.CreateElement("Reference", namespaceURI);
 
                 XmlAttribute attr = doc.CreateAttribute("Include", namespaceURI);
                 attr.Value = assemblyReference;
 
-                newReference.Attributes.Append(attr);
+                reference.Attributes.Append(attr);
 
                 XmlElement specificVersion = doc.CreateElement("SpecificVersion", namespaceURI);
                 XmlText specificVersionValue = doc.CreateTextNode(bool.FalseString);
                 specificVersion.AppendChild(specificVersionValue);
-                newReference.AppendChild(specificVersion);
+                reference.AppendChild(specificVersion);
 
                 XmlElement hintPath = doc.CreateElement("HintPath", namespaceURI);
                 XmlText hintPathValue = doc.CreateTextNode(typeof(Results).Assembly.Location);
                 hintPath.AppendChild(hintPathValue);
-                newReference.AppendChild(hintPath);
+                reference.AppendChild(hintPath);
 
-                itemGroup.AppendChild(newReference);
+                itemGroup.AppendChild(reference);
 
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -74,6 +74,9 @@ namespace SharpCover.Parsing.ProjectFiles
                         fileContent = sr.ReadToEnd();
                     }
                 }
+
+                // HACK: remove empty xmlns attribute!
+                fileContent = fileContent.Replace(" xmlns=\"\"", string.Empty);
             }
 
             coveragePoint = new CoveragePoint(filename, null, -1, -1, false);
