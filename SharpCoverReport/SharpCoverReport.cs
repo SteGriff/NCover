@@ -39,7 +39,6 @@ namespace SharpCover.CommandLine
 					Environment.Exit(-1);
 				}
 			}
-			Environment.Exit(0);			
 		}
 	}
 }
