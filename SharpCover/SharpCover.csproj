@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.30729</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C190D259-694C-4372-A3E3-E60D8BB68F8C}</ProjectGuid>
     <SccProjectName>
@@ -136,9 +136,6 @@
     <Compile Include="CoveragePointComparer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DevEnvDummy.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Instrumenting\FileCopyInstrumenter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -262,7 +259,6 @@
     <Compile Include="Utilities\Serialization.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="NAnt.Core.dll" />
     <EmbeddedResource Include="Report.xslt" />
     <EmbeddedResource Include="SharpCover.css" />
     <EmbeddedResource Include="SharpCover.gif" />
