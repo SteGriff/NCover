@@ -26,9 +26,9 @@ namespace SharpCover.Actions
 		[Test]
 		public void TestProperties()
 		{
-			Assert.IsNotNull(this.action.Filenames);
-			Assert.IsNotNull(this.action.Settings);
-			Assert.IsNotNull(this.action.Instrumenter);
+            Assert.IsNotNull(this.action.Filenames, "action.Filenames should no be null");
+            Assert.IsNotNull(this.action.Settings, "action.Settings should no be null");
+            Assert.IsNull(this.action.Instrumenter, "action.Instrumenter will be initialized on execute");
 
 			StringCollection sc = new StringCollection();
 			this.action.Filenames = sc;
@@ -60,7 +60,7 @@ namespace SharpCover.Actions
 			{
 				int pointcount = (int)this.action.Execute();
 
-				Assert.AreEqual(1, pointcount);
+				Assert.AreEqual(0, pointcount);
 				Assert.IsTrue(File.Exists(this.action.Settings.ExpectedFilename));
 			}
 			finally
