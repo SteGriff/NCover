@@ -82,7 +82,7 @@ namespace SharpCover
 
 			foreach (CoveragePoint actualPoint in actualCoverage.CoveragePoints)
 			{
-                if (!actualPoints.ContainsKey(actualPoint) || !((CoveragePoint)actualPoints[actualPoint]).Hit)
+                if (!actualPoints.ContainsKey(actualPoint) || !(bool)actualPoints[actualPoint])
                 {
                     actualPoints.Add(actualPoint, actualPoint.Hit);
                 }
