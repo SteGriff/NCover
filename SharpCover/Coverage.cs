@@ -84,7 +84,7 @@ namespace SharpCover
 			{
                 if (!actualPoints.ContainsKey(actualPoint) || !(bool)actualPoints[actualPoint])
                 {
-                    actualPoints.Add(actualPoint, actualPoint.Hit);
+                    actualPoints[actualPoint] = actualPoint.Hit;
                 }
 			}
 			
