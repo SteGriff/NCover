@@ -79,9 +79,13 @@ namespace SharpCover
 			Trace.WriteLineIf(Logger.OutputType.TraceVerbose, actualCoverage.CoveragePoints.Length, "Actual Points");
 
 			var actualPoints = new Hashtable();
+
 			foreach (CoveragePoint actualPoint in actualCoverage.CoveragePoints)
 			{
-				actualPoints.Add(actualPoint, actualPoint.Hit);
+                if (!actualPoints.ContainsKey(actualPoint) || !((CoveragePoint)actualPoints[actualPoint]).Hit)
+                {
+                    actualPoints.Add(actualPoint, actualPoint.Hit);
+                }
 			}
 			
 			int hitCount = 0;
