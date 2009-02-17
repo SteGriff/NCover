@@ -282,10 +282,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
-  <UsingTask AssemblyFile="..\tools\UnCover.dll" TaskName="UnCover.UnCover" />
+  <!--<UsingTask AssemblyFile="..\tools\UnCover.dll" TaskName="UnCover.UnCover" />-->
   <Target Name="AfterBuild">
-    <UnCover Action="Cover" Assemblies="$(TargetDir)SharpCover.dll" />
+    <!--<UnCover Action="Cover" Assemblies="$(TargetDir)SharpCover.dll" />-->
     <NUnit Assemblies="$(TargetDir)\SharpCoverTests.dll" WorkingDirectory="$(MSBuildProjectDirectory)" ToolPath="$(NUnitToolPath)" ContinueOnError="false" />
-    <UnCover Action="Report" Assemblies="$(TargetDir)SharpCover.dll" />
+    <!--<UnCover Action="Report" Assemblies="$(TargetDir)SharpCover.dll" />-->
   </Target>
 </Project>
