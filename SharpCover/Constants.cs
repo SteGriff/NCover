@@ -7,6 +7,9 @@ namespace SharpCover
 	public class Constants
 	{
 		//SharpUncover
+        /// <summary>
+        /// 
+        /// </summary>
 		public const string DEBUG = "debug";
 
 		/// <summary>
@@ -30,7 +33,13 @@ namespace SharpCover
 		public const string RECURSE = "recurse";
 
 		//Report
+        /// <summary>
+        /// 
+        /// </summary>
 		public const string MINIMUM = "minimum";
+        /// <summary>
+        /// 
+        /// </summary>
 		public const string HISTORY_FILE = "historyfile";
 	}
 }

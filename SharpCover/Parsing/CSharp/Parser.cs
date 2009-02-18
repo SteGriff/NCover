@@ -5,8 +5,15 @@ using System.Text.RegularExpressions;
 
 namespace SharpCover.Parsing.CSharp
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class Parser : IParse
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Parser"/> class.
+        /// </summary>
+        /// <param name="Settings">The settings.</param>
 		public Parser(ReportSettings Settings)
 		{
 			this.settings = Settings;
@@ -32,22 +39,40 @@ namespace SharpCover.Parsing.CSharp
 		private	List<CoveragePoint> coveragepoints;
 		private ReportSettings settings;
 		private MatchCollection namespaces;
-		
+
+        /// <summary>
+        /// Gets the matchers.
+        /// </summary>
+        /// <value>The matchers.</value>
 		public List<Matcher> Matchers
 		{
 			get{return this.matchers;}
 		}
 
+        /// <summary>
+        /// Gets the coverage points.
+        /// </summary>
+        /// <value>The coverage points.</value>
 		public CoveragePoint[] CoveragePoints
 		{
 			get{return coveragepoints.ToArray();}
 		}
 
+        /// <summary>
+        /// Returns true if this parser can parse this type of file.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
 		public bool Accept(string filename)
 		{
 			return filename.EndsWith(".cs");
 		}
 
+        /// <summary>
+        /// Parses the specified filename.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns></returns>
 		public string Parse(string filename)
 		{
 			string file;
@@ -63,6 +88,11 @@ namespace SharpCover.Parsing.CSharp
 				return ParseString(file);
 		}
 
+        /// <summary>
+        /// Parses the string.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
 		public string ParseString(string source)
 		{
 			this.source = source;
@@ -116,6 +146,12 @@ namespace SharpCover.Parsing.CSharp
 			return lineNumber;
 		}
 
+        /// <summary>
+        /// Gets the coverage code.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="point">The point.</param>
+        /// <returns></returns>
 		public string GetCoverageCode(ReportSettings settings, CoveragePoint point)
 		{
 			string qualifiedCall = "SharpCover.Results.Add(";			

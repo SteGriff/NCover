@@ -5,12 +5,21 @@ using System.Xml.Serialization;
 
 namespace SharpCover.Utilities
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public sealed class Serialization
 	{
 		private Serialization()
 		{
 		}
 
+        /// <summary>
+        /// Toes the XML.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        /// <param name="obj">The obj.</param>
+        /// <param name="close">if set to <c>true</c> [close].</param>
 		public static void ToXml(Stream stream, object obj, bool close)
 		{
 			XmlSerializer output = new XmlSerializer(obj.GetType());
@@ -22,6 +31,12 @@ namespace SharpCover.Utilities
 				writer.Close();
 		}
 
+        /// <summary>
+        /// Froms the XML.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
 		public static object FromXml(Stream stream, Type type)
 		{
 			XmlSerializer input = new XmlSerializer(type);

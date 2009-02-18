@@ -6,6 +6,9 @@ using SharpCover.Parsing;
 
 namespace SharpCover.Instrumenting
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class FileCopyInstrumenter : Instrumenter
 	{
         /// <summary>
@@ -47,7 +50,11 @@ namespace SharpCover.Instrumenting
 			
 			return points;
 		}
-        
+
+        /// <summary>
+        /// Deinstruments the specified filename.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
 		public override void Deinstrument(string filename)
 		{
 			string deinstFilename = filename + ".instrumented";

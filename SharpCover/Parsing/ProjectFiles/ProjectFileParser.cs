@@ -15,11 +15,21 @@ namespace SharpCover.Parsing.ProjectFiles
 
 		#region IParse Members
 
+        /// <summary>
+        /// Returns true if this parser can parse this type of file.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
 		public bool Accept(string filename)
 		{
 			return filename.EndsWith(".csproj") || filename.EndsWith(".vbproj");
 		}
 
+        /// <summary>
+        /// Parses the specified filename.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns></returns>
 		public string Parse(string filename)
 		{
             XmlDocument doc = new XmlDocument();
@@ -83,6 +93,10 @@ namespace SharpCover.Parsing.ProjectFiles
             return fileContent;
 		}
 
+        /// <summary>
+        /// Gets the coverage points.
+        /// </summary>
+        /// <value>The coverage points.</value>
 		public CoveragePoint[] CoveragePoints
 		{
 			get

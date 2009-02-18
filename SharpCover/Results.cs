@@ -2,6 +2,9 @@ using System.Collections;
 
 namespace SharpCover
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	[NoInstrument()]
 	public sealed class Results
 	{
@@ -13,9 +16,13 @@ namespace SharpCover
 		private static Hashtable results = new Hashtable();
         private static readonly object _createLock = new object();
 
-		/// <summary>
-		/// Indicates that a coverage point has been reached relating to the specific report.
-		/// </summary>
+        /// <summary>
+        /// Indicates that a coverage point has been reached relating to the specific report.
+        /// </summary>
+        /// <param name="reportname">The reportname.</param>
+        /// <param name="outputfile">The outputfile.</param>
+        /// <param name="point">The point.</param>
+        /// <returns></returns>
 		public static bool Add(string reportname, string outputfile, int point)
 		{
 			bool result = true;

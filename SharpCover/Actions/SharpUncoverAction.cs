@@ -9,8 +9,14 @@ using SharpCover.Utilities;
 
 namespace SharpCover.Actions
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class SharpUncoverAction : ISharpCoverAction
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SharpUncoverAction"/> class.
+        /// </summary>
 		public SharpUncoverAction()
 		{
 		}
@@ -18,24 +24,40 @@ namespace SharpCover.Actions
 		private ReportSettings settings = new ReportSettings();
 		private Instrumenter instrumenter = new FileCopyInstrumenter(null);
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>The settings.</value>
 		public ReportSettings Settings
 		{
 			get{return this.settings;}
 			set{this.settings = value;}
 		}
 
+        /// <summary>
+        /// Gets or sets the instrumenter.
+        /// </summary>
+        /// <value>The instrumenter.</value>
 		public Instrumenter Instrumenter
 		{
 			get{return this.instrumenter;}
 			set{this.instrumenter = value;}
 		}
 
+        /// <summary>
+        /// Gets or sets the filenames.
+        /// </summary>
+        /// <value>The filenames.</value>
 		public StringCollection Filenames
 		{
 			get{ return new StringCollection();}
 			set{}
 		}
 
+        /// <summary>
+        /// Executes this instance.
+        /// </summary>
+        /// <returns></returns>
 		public decimal Execute()
 		{
 			if (File.Exists(settings.ExpectedFilename))

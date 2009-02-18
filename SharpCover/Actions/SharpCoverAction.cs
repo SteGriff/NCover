@@ -9,8 +9,14 @@ using SharpCover.Parsing;
 
 namespace SharpCover.Actions
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class SharpCoverAction : ISharpCoverAction
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SharpCoverAction"/> class.
+        /// </summary>
 		public SharpCoverAction()
 		{
 			this.settings = new ReportSettings();
@@ -22,24 +28,40 @@ namespace SharpCover.Actions
 		private Instrumenter instrumenter;
         private readonly CoveragePoint[] emptyPoints = new CoveragePoint[0];
 
+        /// <summary>
+        /// Gets or sets the filenames.
+        /// </summary>
+        /// <value>The filenames.</value>
 		public StringCollection Filenames
 		{
 			get{return this.filenames;}
 			set{this.filenames = value;}
 		}
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>The settings.</value>
 		public ReportSettings Settings
 		{
 			get{return this.settings;}
 			set{this.settings = value;}
 		}
 
+        /// <summary>
+        /// Gets or sets the instrumenter.
+        /// </summary>
+        /// <value>The instrumenter.</value>
 		public Instrumenter Instrumenter
 		{
 			get{return this.instrumenter;}
 			set{this.instrumenter = value;}
 		}
 
+        /// <summary>
+        /// Executes this instance.
+        /// </summary>
+        /// <returns></returns>
 		public decimal Execute()
 		{
             List<IParse> parsers = new List<IParse>(3);

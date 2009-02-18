@@ -6,19 +6,28 @@ using System.Xml.XPath;
 using System.Xml.Xsl;
 using SharpCover.Logging;
 using SharpCover.Utilities;
+using System.Text;
 
 namespace SharpCover.Reporting
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public sealed class HtmlReport
 	{
 		private HtmlReport()
 		{
 		}
 
+        /// <summary>
+        /// Generates the specified settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="report">The report.</param>
 		public static void Generate(ReportSettings settings, Report report)
 		{			
 			// Load the transform
-			XslTransform transform = LoadTransform("SharpCover.Report.xslt");
+			XslCompiledTransform transform = LoadTransform("SharpCover.Report.xslt");
 			
 			// Save the required stylesheet and images to the output folder
 			WriteResource(settings.CssFilename, "SharpCover.SharpCover.css", ResourceType.Text);
@@ -31,21 +40,23 @@ namespace SharpCover.Reporting
 			WriteReport(transform, doc, settings.ReportFilename);
 		}
 
-		private static void WriteReport(XslTransform transform, XPathDocument doc, string filename)
+        private static void WriteReport(XslCompiledTransform transform, XPathDocument doc, string filename)
 		{
 			FileStream output = new FileStream(filename, FileMode.Create);
-			using (TextWriter writer = new StreamWriter(output))
+			
+            using (XmlTextWriter writer = new XmlTextWriter(output, Encoding.UTF8))
 			{
-				transform.Transform(doc, null, writer, null);
+				transform.Transform(doc.CreateNavigator(), writer);
 			}
 		}
 
-		private static XslTransform LoadTransform(string resourcename)
+        private static XslCompiledTransform LoadTransform(string resourcename)
 		{
-			XslTransform transform = new XslTransform();
+            XslCompiledTransform transform = new XslCompiledTransform();
+
 			using (Stream stream = ResourceManager.GetResource(resourcename))
 			{
-				transform.Load(new XmlTextReader(stream), null, AppDomain.CurrentDomain.Evidence);
+				transform.Load(new XmlTextReader(stream));
 			}
 
 			return transform;

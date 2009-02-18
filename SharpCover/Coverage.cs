@@ -10,12 +10,20 @@ namespace SharpCover
 	/// Holds the raw data for what coverage points have been hit / missed.
 	/// </summary>
 	public class Coverage
-	{	
+	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Coverage"/> class.
+        /// </summary>
 		public Coverage()
 		{
 			this.settings = new ReportSettings();
 		}
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Coverage"/> class.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="points">The points.</param>
 		public Coverage(ReportSettings settings, CoveragePoint[] points)
 		{
 			this.settings = settings;
@@ -24,12 +32,19 @@ namespace SharpCover
 
 		private ReportSettings settings;
 
+        /// <summary>
+        /// Gets or sets the settings.
+        /// </summary>
+        /// <value>The settings.</value>
 		public ReportSettings Settings
 		{
 			get{return this.settings;}
 			set{this.settings = value;}
 		}
-		
+
+        /// <summary>
+        /// 
+        /// </summary>
 		public CoveragePoint[] CoveragePoints;
 
 		/// <summary>
@@ -38,8 +53,14 @@ namespace SharpCover
 		public static void SaveCoverage(Stream outputstream, Coverage coverage)
 		{
 			SharpCover.Utilities.Serialization.ToXml(outputstream, coverage, true);
-		}			
+		}
 
+        /// <summary>
+        /// Loads the coverage.
+        /// </summary>
+        /// <param name="expected">The expected.</param>
+        /// <param name="actual">The actual.</param>
+        /// <returns></returns>
 		public static Coverage LoadCoverage(Stream expected, Stream actual)
 		{
 			var coverage = (Coverage)Utilities.Serialization.FromXml(expected, typeof(Coverage));
@@ -53,6 +74,11 @@ namespace SharpCover
 			return coverage;
 		}
 
+        /// <summary>
+        /// Fixes the actual file.
+        /// </summary>
+        /// <param name="actual">The actual.</param>
+        /// <returns></returns>
 		public static Stream FixActualFile(Stream actual)
 		{
 			MemoryStream ms = new MemoryStream();

@@ -3,6 +3,9 @@ using SharpCover.Parsing;
 
 namespace SharpCover.Instrumenting
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public abstract class Instrumenter
 	{
 
@@ -15,9 +18,21 @@ namespace SharpCover.Instrumenting
 			this.parsers = parsers;
 		}
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected IParse[] parsers;
 
+        /// <summary>
+        /// Instruments the specified filename.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns></returns>
 		public abstract CoveragePoint[] Instrument(string filename);
+        /// <summary>
+        /// Deinstruments the specified filename.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
 		public abstract void Deinstrument(string filename);
 	}
 }

@@ -5,12 +5,20 @@ using SharpCover.Utilities;
 
 namespace SharpCover.Reporting
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public sealed class HistoryManager
 	{
 		private HistoryManager()
 		{
 		}
 
+        /// <summary>
+        /// Loads the history.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns></returns>
 		public static History LoadHistory(string filename)
 		{
 			if(filename == null)
@@ -35,6 +43,10 @@ namespace SharpCover.Reporting
 			}
 		}
 
+        /// <summary>
+        /// Saves the history.
+        /// </summary>
+        /// <param name="history">The history.</param>
 		public static void SaveHistory(History history)
 		{
 			//Save history to disk

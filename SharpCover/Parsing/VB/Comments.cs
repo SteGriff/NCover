@@ -4,8 +4,15 @@ using System.Collections.Generic;
 
 namespace SharpCover.Parsing.VB
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class Comments : IComments
-	{	
+	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Comments"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
 		public Comments(string source)
 		{
 			IdentifyCommentsAndStringLiterals(source);
@@ -17,6 +24,10 @@ namespace SharpCover.Parsing.VB
 
 		private List<Insert> comments;
 
+        /// <summary>
+        /// Gets or sets the comment positions.
+        /// </summary>
+        /// <value>The comment positions.</value>
         public List<Insert> CommentPositions
 		{
 			get{return this.comments;}
@@ -44,6 +55,13 @@ namespace SharpCover.Parsing.VB
 			//todo: can one do multiline comments in vb?
 		}
 
+        /// <summary>
+        /// Determines whether [is in comment] [the specified position].
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <returns>
+        /// 	<c>true</c> if [is in comment] [the specified position]; otherwise, <c>false</c>.
+        /// </returns>
 		public bool IsInComment(int position)
 		{
 			if (comments != null)

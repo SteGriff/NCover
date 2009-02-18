@@ -8,8 +8,14 @@ using SharpCover.Utilities;
 
 namespace SharpCover.Actions
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class SharpCoverReportAction : ISharpCoverAction
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SharpCoverReportAction"/> class.
+        /// </summary>
 		public SharpCoverReportAction()
 		{
 			settings = new ReportSettings();
@@ -23,17 +29,29 @@ namespace SharpCover.Actions
 
 		private readonly ReportSettings settings;
 
+        /// <summary>
+        /// Gets or sets the filenames.
+        /// </summary>
+        /// <value>The filenames.</value>
 		public StringCollection Filenames
 		{
 			get{return new StringCollection();}
 			set{}
 		}
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>The settings.</value>
 		public ReportSettings Settings
 		{
 			get{ return settings; }
 		}
 
+        /// <summary>
+        /// Executes this instance.
+        /// </summary>
+        /// <returns></returns>
 		public decimal Execute()
 		{
 			try

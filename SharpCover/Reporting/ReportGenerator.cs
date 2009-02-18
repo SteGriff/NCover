@@ -2,12 +2,23 @@ using System;
 
 namespace SharpCover.Reporting
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class ReportGenerator
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportGenerator"/> class.
+        /// </summary>
 		public ReportGenerator()
 		{
 		}
 
+        /// <summary>
+        /// Generates the report.
+        /// </summary>
+        /// <param name="coverage">The coverage.</param>
+        /// <returns></returns>
 		public Report GenerateReport(Coverage coverage)
 		{
 			Report report = new Report();

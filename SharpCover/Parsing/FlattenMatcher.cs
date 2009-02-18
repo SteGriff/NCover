@@ -4,8 +4,15 @@ using System.Text.RegularExpressions;
 
 namespace SharpCover.Parsing
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class FlattenMatcher : Matcher
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlattenMatcher"/> class.
+        /// </summary>
+        /// <param name="AddPointCallback">The add point callback.</param>
 		public FlattenMatcher(AddCoveragePointDelegate AddPointCallback) : base(AddPointCallback)
 		{
 		}
@@ -14,17 +21,30 @@ namespace SharpCover.Parsing
 		private const char LEFTBRACE = System.Char.MaxValue;
 		private const char RIGHTBRACE = System.Char.MinValue;
 
-
+        /// <summary>
+        /// Gets the regex.
+        /// </summary>
+        /// <value>The regex.</value>
 		public override Regex Regex
 		{
 			get{return this.regex;}
 		}
 
+        /// <summary>
+        /// Gets the absolute insert point.
+        /// </summary>
+        /// <param name="match">The match.</param>
+        /// <returns></returns>
 		protected override int GetAbsoluteInsertPoint(Match match)
 		{
 			return -2;
 		}
 
+        /// <summary>
+        /// Performs the match.
+        /// </summary>
+        /// <param name="match">The match.</param>
+        /// <returns></returns>
 		protected override string PerformMatch(Match match)
 		{
 			string original = match.Value;

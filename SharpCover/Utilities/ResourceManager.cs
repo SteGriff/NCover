@@ -3,24 +3,51 @@ using System.Reflection;
 
 namespace SharpCover.Utilities
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class ResourceManager
 	{
+        /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="assembly">The assembly.</param>
+        /// <returns></returns>
 		public static Stream GetResource(string name, Assembly assembly)
 		{
 			return assembly.GetManifestResourceStream(name);
 		}
 
+        /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
 		public static Stream GetResource(string name)
 		{
 			return GetResource(name, typeof(ResourceManager).Assembly);
 		}
 
+        /// <summary>
+        /// Writes the resource to stream.
+        /// </summary>
+        /// <param name="outputstream">The outputstream.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="assem">The assem.</param>
 		public static void WriteResourceToStream(Stream outputstream, string name, ResourceType type, Assembly assem)
 		{
 			Stream stream = GetResource(name, assem);
 			WriteResourceToStream(stream, outputstream, type);
 		}
 
+        /// <summary>
+        /// Writes the resource to stream.
+        /// </summary>
+        /// <param name="outputstream">The outputstream.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="type">The type.</param>
 		public static void WriteResourceToStream(Stream outputstream, string name, ResourceType type)
 		{
 			Stream stream = GetResource(name);

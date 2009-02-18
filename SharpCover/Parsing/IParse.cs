@@ -1,5 +1,8 @@
 namespace SharpCover.Parsing
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public interface IParse
 	{
 		/// <summary>
@@ -7,7 +10,17 @@ namespace SharpCover.Parsing
 		/// </summary>
 		bool Accept(string filename);
 
+        /// <summary>
+        /// Parses the specified filename.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns></returns>
 		string Parse(string filename);
+
+        /// <summary>
+        /// Gets the coverage points.
+        /// </summary>
+        /// <value>The coverage points.</value>
 		CoveragePoint[] CoveragePoints {get;}
 	}
 }

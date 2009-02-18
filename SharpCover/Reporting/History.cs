@@ -12,10 +12,17 @@ namespace SharpCover.Reporting
 	[XmlRoot()]
 	public class History
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="History"/> class.
+        /// </summary>
 		public History()
 		{
 		}
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="History"/> class.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
 		public History(string filename)
 		{
 			this.filename = filename;
@@ -25,6 +32,10 @@ namespace SharpCover.Reporting
 		private EventComparer	comparer	= new EventComparer();
 		private string			filename	= "";
 
+        /// <summary>
+        /// Gets or sets the filename.
+        /// </summary>
+        /// <value>The filename.</value>
 		[XmlIgnore()]
 		public string Filename
 		{

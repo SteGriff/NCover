@@ -4,27 +4,54 @@ using SharpCover.Reporting;
 
 namespace SharpCover.Collections
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class NamespaceCollection : CollectionBase
 	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NamespaceCollection"/> class.
+        /// </summary>
 		public NamespaceCollection()
 		{
 		}
 
+        /// <summary>
+        /// Inserts the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <param name="reportnamespace">The reportnamespace.</param>
 		public void Insert(int index, Namespace reportnamespace)
 		{
 			base.InnerList.Insert(index, reportnamespace);
 		}
 
+        /// <summary>
+        /// Removes the specified reportnamespace.
+        /// </summary>
+        /// <param name="reportnamespace">The reportnamespace.</param>
 		public void Remove(Namespace reportnamespace)
 		{
 			base.InnerList.Remove(reportnamespace);
 		}
 
+        /// <summary>
+        /// Adds the specified reportnamespace.
+        /// </summary>
+        /// <param name="reportnamespace">The reportnamespace.</param>
+        /// <returns></returns>
 		public int Add(Namespace reportnamespace)
 		{
 			return base.InnerList.Add(reportnamespace);
 		}
 
+        /// <summary>
+        /// Determines whether [contains] [the specified reportnamespace].
+        /// </summary>
+        /// <param name="reportnamespace">The reportnamespace.</param>
+        /// <returns>
+        /// 	<c>true</c> if [contains] [the specified reportnamespace]; otherwise, <c>false</c>.
+        /// </returns>
 		public bool Contains(Namespace reportnamespace)
 		{
 			foreach(Namespace ns in base.InnerList)
@@ -36,6 +63,13 @@ namespace SharpCover.Collections
 			return false;
 		}
 
+        /// <summary>
+        /// Determines whether [contains] [the specified name].
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        /// 	<c>true</c> if [contains] [the specified name]; otherwise, <c>false</c>.
+        /// </returns>
 		public bool Contains(string name)
 		{
 			foreach(Namespace ns in base.InnerList)
@@ -47,6 +81,10 @@ namespace SharpCover.Collections
 			return false;
 		}
 
+        /// <summary>
+        /// Gets the <see cref="SharpCover.Reporting.Namespace"/> at the specified index.
+        /// </summary>
+        /// <value></value>
 		public Namespace this[int index]
 		{
 			get
@@ -58,6 +96,10 @@ namespace SharpCover.Collections
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets the number of hit points.
+        /// </summary>
+        /// <value>The number of hit points.</value>
 		public int NumberOfHitPoints
 		{
 			get
@@ -73,6 +115,10 @@ namespace SharpCover.Collections
 			set{}
 		}
 
+        /// <summary>
+        /// Gets or sets the number of points.
+        /// </summary>
+        /// <value>The number of points.</value>
 		public int NumberOfPoints
 		{
 			get
@@ -88,6 +134,10 @@ namespace SharpCover.Collections
 			set{}
 		}
 
+        /// <summary>
+        /// Gets or sets the coverage percentage.
+        /// </summary>
+        /// <value>The coverage percentage.</value>
 		public decimal CoveragePercentage
 		{
 			get
