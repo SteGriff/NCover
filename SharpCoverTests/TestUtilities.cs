@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.CodeDom.Compiler;
-using System.Diagnostics;
+using System.Collections;
 using System.Reflection;
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
-
 using NUnit.Framework;
 
 namespace SharpCover

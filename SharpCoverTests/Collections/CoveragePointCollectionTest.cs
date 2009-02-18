@@ -1,6 +1,3 @@
-using System;
-using SharpCover.Reporting;
-using SharpCover.Collections;
 using NUnit.Framework;
 
 namespace SharpCover.Collections

@@ -1,8 +1,5 @@
-using System;
 using System.IO;
-using System.Collections.Specialized;
 using NUnit.Framework;
-using SharpCover;
 using SharpCover.Utilities;
 
 namespace SharpCover.Actions

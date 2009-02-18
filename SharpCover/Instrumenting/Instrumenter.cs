@@ -1,4 +1,3 @@
-using System.Collections;
 using SharpCover.Parsing;
 
 namespace SharpCover.Instrumenting

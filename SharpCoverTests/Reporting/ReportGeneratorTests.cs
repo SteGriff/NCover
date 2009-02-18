@@ -1,7 +1,5 @@
-using System;
 using System.IO;
 using NUnit.Framework;
-using SharpCover;
 using SharpCover.Utilities;
 
 namespace SharpCover.Reporting

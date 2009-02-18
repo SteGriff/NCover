@@ -1,4 +1,3 @@
-using System;
 using NAnt.Core;
 
 namespace SharpCover.Tasks
