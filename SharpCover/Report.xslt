@@ -46,7 +46,7 @@
 					</xsl:if>		
 					
 					<div id="footer">
-						<p>Report generated on <xsl:value-of select="ReportDate"/> by <a href="http://www.sourceforge.net/projects/sharpcover">SharpCover</a> version <xsl:value-of select="SharpCoverVersion"/></p>
+						<p>Report generated on <xsl:value-of select="ReportDate"/> by <a href="http://sourceforge.net/projects/ncover/">SharpCover</a> version <xsl:value-of select="SharpCoverVersion"/></p>
 						<p>Disclaimer: 100% Test coverage is no guarantee of the quality of the tests.</p>
 					</div>
 				</div>
