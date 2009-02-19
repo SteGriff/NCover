@@ -9,32 +9,32 @@ namespace ExampleCSharpLibrary
 		{}
 
 		public void AMethod()
-		{ 	
+		{SharpCover.Results.Add(@"examplecsharp", @"C:\Projekte\ncover\testresults\examplecsharp-actual.xml", 7);  	
 			bool x = true;
 
-			if (true && true)
+			if (SharpCover.Results.Add(@"examplecsharp", @"C:\Projekte\ncover\testresults\examplecsharp-actual.xml", 1) && true && true)
 			{
 				x = false;
 			}
 
-			if (true && !x)
+			if (SharpCover.Results.Add(@"examplecsharp", @"C:\Projekte\ncover\testresults\examplecsharp-actual.xml", 2) && true && !x)
 				x = false;
 
 			int i = 0;
-			while (i == 0)
+			while (SharpCover.Results.Add(@"examplecsharp", @"C:\Projekte\ncover\testresults\examplecsharp-actual.xml", 3) && i == 0)
 			{
 				i++;
 			}
 
-			while (i == 0)
+			while (SharpCover.Results.Add(@"examplecsharp", @"C:\Projekte\ncover\testresults\examplecsharp-actual.xml", 4) && i == 0)
 				i++;
 
-			for (int j = 0; j < 3; j++)
+			for (int j = 0;SharpCover.Results.Add(@"examplecsharp", @"C:\Projekte\ncover\testresults\examplecsharp-actual.xml", 5) &&  j < 3; j++)
 			{
 				j = j;
 			}
 
-			for (int j = 0;j < 3; j++)
+			for (int j = 0;SharpCover.Results.Add(@"examplecsharp", @"C:\Projekte\ncover\testresults\examplecsharp-actual.xml", 6) && j < 3; j++)
 				j = j;
 
 			switch (i)
@@ -51,6 +51,7 @@ namespace ExampleCSharpLibrary
 		}	
 	}
 }
+
 
 
 

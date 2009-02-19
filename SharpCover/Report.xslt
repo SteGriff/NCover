@@ -5,12 +5,13 @@
 		<html>
 			<head>
 				<title>SharpCover coverage report - <xsl:value-of select="ReportName"/></title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 				<link rel="stylesheet" type="text/css" href="SharpCover.css" />
 			</head>
 			<body>
 				<div id="container">
 					<div id="header">
-						<span id="title"></span>
+            <span id="title"/>
 					</div>
 					
 					<div id="summary">
@@ -39,7 +40,9 @@
 							<xsl:for-each select="History/Events/Event">
 								<xsl:sort select="position()" data-type="number" order="descending" />
 							
-								<span class="bar" style="width: 5px; position: absolute; left:{(position() * 8) + 32}px; background-color:{CoveragePercentageColor}; height:{round(CoveragePercentage * 100) * 3}px; top:{302 - (round(CoveragePercentage * 100) * 3)}px;"></span>
+								<span class="bar" style="width: 5px; position: absolute; left:{(position() * 8) + 32}px; background-color:{CoveragePercentageColor}; height:{round(CoveragePercentage * 100) * 3}px; top:{302 - (round(CoveragePercentage * 100) * 3)}px;">
+                  <xsl:text>&#160;</xsl:text>
+                </span>
 							</xsl:for-each><br />
 							<span class="xAxisLabel" style="position: relative; top: 285px; left: 40px; display: block; clear: both;">time &gt;</span>
 						</div>
