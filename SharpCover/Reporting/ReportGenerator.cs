@@ -41,11 +41,9 @@ namespace SharpCover.Reporting
 		{
 			foreach(CoveragePoint point in coverage.CoveragePoints)
 			{
-				if(!report.Namespaces.Contains(point.Namespace))
+				if(!string.IsNullOrEmpty(point.Namespace) && !report.Namespaces.Contains(point.Namespace))
 				{
-					Namespace ns = new Namespace();
-					ns.Name = point.Namespace;
-					report.Namespaces.Add(ns);
+					report.Namespaces.Add(new Namespace() { Name = point.Namespace });
 				}
 			}
 		}
@@ -58,8 +56,7 @@ namespace SharpCover.Reporting
 				{
 					if(!ns.Files.Contains(point.Filename))
 					{
-						ReportFile file = new ReportFile();
-						file.Filename = point.Filename;
+                        ReportFile file = new ReportFile() { Filename = point.Filename };
 						ns.Files.Add(file);
 						PopulateFile(file, ns, coverage);
 					}

@@ -33,11 +33,22 @@ namespace SharpCover.Reporting
 			WriteResource(settings.CssFilename, "SharpCover.SharpCover.css", ResourceType.Text);
 			WriteResource(settings.GetFilename("SharpCover", ".gif"), "SharpCover.SharpCover.gif", ResourceType.Binary);
 
+            // Write the xml report to disk
+            WriteReport(report, settings.ReportXmlFilename);
+
 			// Convert the report to a format we can transform
 			XPathDocument doc = ConvertReportToXPathDocument(report);
-			
+
 			// Do the transform and write the results to disk
 			WriteReport(transform, doc, settings.ReportFilename);
+		}
+
+        private static void WriteReport(Report report, string filename)
+		{
+            using (StreamWriter sw = new StreamWriter(filename, false, Encoding.UTF8))
+            {
+                Serialization.ToXml(sw.BaseStream, report, false);
+            }
 		}
 
         private static void WriteReport(XslCompiledTransform transform, XPathDocument doc, string filename)

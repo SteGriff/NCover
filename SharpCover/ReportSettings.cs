@@ -19,6 +19,7 @@ namespace SharpCover
 		private const string HISTORY_EXTENSION = "-history.xml";
 		private const string ACTUAL_EXTENSION = "-actual.xml";
 		private const string REPORT_EXTENSION = "-report.html";
+		private const string REPORT_XML_EXTENSION = "-report.xml";
 
 		private decimal minimum = 0;
 		private string reportdir = Environment.CurrentDirectory;
@@ -108,6 +109,15 @@ namespace SharpCover
 		public string ReportFilename
 		{
 			get{return GetFilename(REPORT_EXTENSION);}
+		}
+
+        /// <summary>
+        /// Gets the report XML filename.
+        /// </summary>
+        /// <value>The report XML filename.</value>
+		public string ReportXmlFilename
+		{
+			get{return GetFilename(REPORT_XML_EXTENSION);}
 		}
 
         /// <summary>
