@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.30729</ProductVersion>
@@ -84,10 +83,6 @@
     </Reference>
     <Reference Include="System.XML">
       <Name>System.XML</Name>
-    </Reference>
-    <Reference Include="SharpCover, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8745ca6dd57ee301">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Projekte\ncover\SharpCover-Console\bin\Debug\SharpCover.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
